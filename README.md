@@ -42,7 +42,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Updating library versions to latest
 
 npm i -g npm-check-updates
+
 ncu -u
+
 npm install
 
 ## Learn More
