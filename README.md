@@ -1,6 +1,6 @@
 # Town Map Builder
 
-Web-app that allows you to design custom town maps with different tile sets. For example modern town, medieval, etc. 
+Web-app that allows you to design custom town maps with different tile sets. For example modern town, medieval town, etc. 
 
 ## Development server
 
