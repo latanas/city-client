@@ -1,6 +1,6 @@
-# Fantasy Town Builder
+# Town Map Builder
 
-Web-app that allows you to design your own medieval fantasy town in isometric grid. 
+Web-app that allows you to design custom town maps with different tile sets. For example modern town, medieval, etc. 
 
 ## Development server
 
