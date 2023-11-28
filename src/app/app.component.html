@@ -25,7 +25,6 @@
     <img [src]="building.type.imagePath" width="200px" height="auto" [alt]="building.type.name" [title]="building.type.name">
 </div>
 }
-  
 @if (currentBuildingType.name != "") {
 <div class="current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()" >
  <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
@@ -35,6 +34,15 @@
 @if (currentSubMenu == "Housing") {
 <div class="building_sub_palette">
     @for (buildingType of buildingSubMenus["Housing"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Power") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Power"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -62,6 +70,15 @@
 @if (currentSubMenu == "Transport") {
 <div class="building_sub_palette">
     @for (buildingType of buildingSubMenus["Transport"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Parks") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Parks"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
