@@ -1,5 +1,5 @@
 
-<div class="city_viewport" (click)="placeBuilding()">
+<div class="city_viewport">
     <!--City View-->
 </div>
 
@@ -19,22 +19,53 @@
     <span>Help</span>
 </div>
 
-@if (currentBuildingName != "") {
-<div class="current_building_placement" [style.left]="mousePos.getPixelsX()" [style.top]="mousePos.getPixelsY()" >
- {{currentBuildingName}}
+      
+@for (building of buildings; track $index) {
+<div class="current_building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()" >
+    <img [src]="building.type.imagePath" width="200px" height="auto" [alt]="building.type.name" [title]="building.type.name">
+</div>
+}
+  
+@if (currentBuildingType.name != "") {
+<div class="current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()" >
+ <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
 </div>
 }
 
-@if (currentSubMenu != "") {
+@if (currentSubMenu == "Housing") {
 <div class="building_sub_palette">
-    <div class="building_sub_palette_01" (click)="grabBuilding('Building 1')"><p>Building 1</p></div>
-    <div class="building_sub_palette_02" (click)="grabBuilding('Building 2')"><p>Building 2</p></div>
-    <div class="building_sub_palette_03" (click)="grabBuilding('Building 3')"><p>Building 3</p></div>
-    <div class="building_sub_palette_04" (click)="grabBuilding('Building 4')"><p>Building 4</p></div>
-    <div class="building_sub_palette_05" (click)="grabBuilding('Building 5')"><p>Building 5</p></div>
-    <div class="building_sub_palette_06" (click)="grabBuilding('Building 6')"><p>Building 6</p></div>
-    <div class="building_sub_palette_07" (click)="grabBuilding('Building 7')"><p>Building 7</p></div>
-    <div class="building_sub_palette_08" (click)="grabBuilding('Building 8')"><p>Building 8</p></div>
+    @for (buildingType of buildingSubMenus["Housing"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Industry") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Industry"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Entertainment") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Entertainment"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Transport") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Transport"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
 </div>
 }
 
