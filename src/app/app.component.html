@@ -19,27 +19,28 @@
     <span>Help</span>
 </div>
 
-
+@if (showSubPaletteHousing || showSubPalettePower || showSubPaletteWater || showSubPaletteIndustry || showSubPaletteEntertainment || showSubPaletteEducation || showSubPaletteTransport || showSubPaletteParks) {
 <div class="building_sub_palette">
-    <div class="building_sub_palette_01"><p>1</p></div>
-    <div class="building_sub_palette_02"><p>2</p></div>
-    <div class="building_sub_palette_03"><p>3</p></div>
-    <div class="building_sub_palette_04"><p>4</p></div>
-    <div class="building_sub_palette_05"><p>5</p></div>
-    <div class="building_sub_palette_06"><p>6</p></div>
-    <div class="building_sub_palette_07"><p>7</p></div>
-    <div class="building_sub_palette_08"><p>8</p></div>
+    <div class="building_sub_palette_01" (click)="hideAllSubMenus()"><p>1</p></div>
+    <div class="building_sub_palette_02" (click)="hideAllSubMenus()"><p>2</p></div>
+    <div class="building_sub_palette_03" (click)="hideAllSubMenus()"><p>3</p></div>
+    <div class="building_sub_palette_04" (click)="hideAllSubMenus()"><p>4</p></div>
+    <div class="building_sub_palette_05" (click)="hideAllSubMenus()"><p>5</p></div>
+    <div class="building_sub_palette_06" (click)="hideAllSubMenus()"><p>6</p></div>
+    <div class="building_sub_palette_07" (click)="hideAllSubMenus()"><p>7</p></div>
+    <div class="building_sub_palette_08" (click)="hideAllSubMenus()"><p>8</p></div>
 </div>
+}
 
 <div class="building_palette">
-    <div class="building_palette_01"><p>Housing</p></div>
-    <div class="building_palette_02"><p>Power</p></div>
-    <div class="building_palette_03"><p>Water</p></div>
-    <div class="building_palette_04"><p>Industry</p></div>
-    <div class="building_palette_05"><p>Entertainment</p></div>
-    <div class="building_palette_06"><p>Education</p></div>
-    <div class="building_palette_07"><p>Transport</p></div>
-    <div class="building_palette_08"><p>Parks</p></div>
+    <div class="building_palette_01" (click)="hideAllSubMenus(); showSubPaletteHousing=true"><p>Housing</p></div>
+    <div class="building_palette_02" (click)="hideAllSubMenus(); showSubPalettePower=true"><p>Power</p></div>
+    <div class="building_palette_03" (click)="hideAllSubMenus(); showSubPaletteWater=true"><p>Water</p></div>
+    <div class="building_palette_04" (click)="hideAllSubMenus(); showSubPaletteIndustry=true"><p>Industry</p></div>
+    <div class="building_palette_05" (click)="hideAllSubMenus(); showSubPaletteEntertainment=true"><p>Entertainment</p></div>
+    <div class="building_palette_06" (click)="hideAllSubMenus(); showSubPaletteEducation=true"><p>Education</p></div>
+    <div class="building_palette_07" (click)="hideAllSubMenus(); showSubPaletteTransport=true"><p>Transport</p></div>
+    <div class="building_palette_08" (click)="hideAllSubMenus(); showSubPaletteParks=true"><p>Parks</p></div>
 
     <p class="building_palette_bulldoze">Bulldoze</p>
 </div>
