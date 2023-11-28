@@ -325,3 +325,13 @@
     transform: rotate(-30deg);
 }
 
+.current_building_placement {
+    display: block;
+    position: fixed;
+
+    top: 100px;
+    left: 100px;
+    
+    width: 100px;
+    height: 100px;
+}

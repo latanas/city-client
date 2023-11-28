@@ -1,30 +1,41 @@
 import { Component } from '@angular/core';
+import { Point } from './point';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  host:{"(mousemove)": "onMouseMove($event)"}
 })
+
 export class AppComponent {
   title = 'City';
 
-  showSubPaletteHousing = false;
-  showSubPalettePower = false;
-  showSubPaletteWater = false;
-  showSubPaletteIndustry = false;
-  showSubPaletteEntertainment = false;
-  showSubPaletteEducation = false;
-  showSubPaletteTransport = false;
-  showSubPaletteParks = false;
+  currentSubMenu = "";
+  currentBuildingName = "";
 
-  public hideAllSubMenus() {
-    this.showSubPaletteHousing = false;
-    this.showSubPalettePower = false;
-    this.showSubPaletteWater = false;
-    this.showSubPaletteIndustry = false;
-    this.showSubPaletteEntertainment = false;
-    this.showSubPaletteEducation = false;
-    this.showSubPaletteTransport = false;
-    this.showSubPaletteParks = false;
+  mousePos = new Point();
+
+  public showSubMenu(menuName: string) {
+    this.currentSubMenu = menuName;
+  }
+  public hideSubMenu() {
+    this.currentSubMenu = "";
+  }
+
+  public grabBuilding(buildingName: string) {
+    this.hideSubMenu(); 
+    this.currentBuildingName = buildingName;
+  }
+
+  public placeBuilding() {
+    this.currentBuildingName = "";
+  }
+
+  onMouseMove(e: MouseEvent) {
+    this.mousePos.x = e.clientX;
+    this.mousePos.y = e.clientY;
+
+    console.log(this.mousePos.x);
   }
 }

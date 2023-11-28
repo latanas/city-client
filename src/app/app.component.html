@@ -1,5 +1,5 @@
 
-<div class="city_viewport">
+<div class="city_viewport" (click)="placeBuilding()">
     <!--City View-->
 </div>
 
@@ -19,28 +19,34 @@
     <span>Help</span>
 </div>
 
-@if (showSubPaletteHousing || showSubPalettePower || showSubPaletteWater || showSubPaletteIndustry || showSubPaletteEntertainment || showSubPaletteEducation || showSubPaletteTransport || showSubPaletteParks) {
+@if (currentBuildingName != "") {
+<div class="current_building_placement" [style.left]="mousePos.getPixelsX()" [style.top]="mousePos.getPixelsY()" >
+ {{currentBuildingName}}
+</div>
+}
+
+@if (currentSubMenu != "") {
 <div class="building_sub_palette">
-    <div class="building_sub_palette_01" (click)="hideAllSubMenus()"><p>1</p></div>
-    <div class="building_sub_palette_02" (click)="hideAllSubMenus()"><p>2</p></div>
-    <div class="building_sub_palette_03" (click)="hideAllSubMenus()"><p>3</p></div>
-    <div class="building_sub_palette_04" (click)="hideAllSubMenus()"><p>4</p></div>
-    <div class="building_sub_palette_05" (click)="hideAllSubMenus()"><p>5</p></div>
-    <div class="building_sub_palette_06" (click)="hideAllSubMenus()"><p>6</p></div>
-    <div class="building_sub_palette_07" (click)="hideAllSubMenus()"><p>7</p></div>
-    <div class="building_sub_palette_08" (click)="hideAllSubMenus()"><p>8</p></div>
+    <div class="building_sub_palette_01" (click)="grabBuilding('Building 1')"><p>Building 1</p></div>
+    <div class="building_sub_palette_02" (click)="grabBuilding('Building 2')"><p>Building 2</p></div>
+    <div class="building_sub_palette_03" (click)="grabBuilding('Building 3')"><p>Building 3</p></div>
+    <div class="building_sub_palette_04" (click)="grabBuilding('Building 4')"><p>Building 4</p></div>
+    <div class="building_sub_palette_05" (click)="grabBuilding('Building 5')"><p>Building 5</p></div>
+    <div class="building_sub_palette_06" (click)="grabBuilding('Building 6')"><p>Building 6</p></div>
+    <div class="building_sub_palette_07" (click)="grabBuilding('Building 7')"><p>Building 7</p></div>
+    <div class="building_sub_palette_08" (click)="grabBuilding('Building 8')"><p>Building 8</p></div>
 </div>
 }
 
 <div class="building_palette">
-    <div class="building_palette_01" (click)="hideAllSubMenus(); showSubPaletteHousing=true"><p>Housing</p></div>
-    <div class="building_palette_02" (click)="hideAllSubMenus(); showSubPalettePower=true"><p>Power</p></div>
-    <div class="building_palette_03" (click)="hideAllSubMenus(); showSubPaletteWater=true"><p>Water</p></div>
-    <div class="building_palette_04" (click)="hideAllSubMenus(); showSubPaletteIndustry=true"><p>Industry</p></div>
-    <div class="building_palette_05" (click)="hideAllSubMenus(); showSubPaletteEntertainment=true"><p>Entertainment</p></div>
-    <div class="building_palette_06" (click)="hideAllSubMenus(); showSubPaletteEducation=true"><p>Education</p></div>
-    <div class="building_palette_07" (click)="hideAllSubMenus(); showSubPaletteTransport=true"><p>Transport</p></div>
-    <div class="building_palette_08" (click)="hideAllSubMenus(); showSubPaletteParks=true"><p>Parks</p></div>
+    <div class="building_palette_01" (click)="showSubMenu('Housing')"><p>Housing</p></div>
+    <div class="building_palette_02" (click)="showSubMenu('Power')"><p>Power</p></div>
+    <div class="building_palette_03" (click)="showSubMenu('Water')"><p>Water</p></div>
+    <div class="building_palette_04" (click)="showSubMenu('Industry')"><p>Industry</p></div>
+    <div class="building_palette_05" (click)="showSubMenu('Entertainment')"><p>Entertainment</p></div>
+    <div class="building_palette_06" (click)="showSubMenu('Education')"><p>Education</p></div>
+    <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
+    <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
 
     <p class="building_palette_bulldoze">Bulldoze</p>
 </div>
