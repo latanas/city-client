@@ -6,6 +6,13 @@
     display: block;
     width: 100%;
     height: 100%;
+
+    background-size: 100px 100px;
+    background-image:
+        linear-gradient(to right, grey 1px, transparent 1px),
+        linear-gradient(to bottom, grey 1px, transparent 1px);
+    background-position: top left;
+
 }
 
 .top_menu {
@@ -19,7 +26,7 @@
     padding: 0px;
 
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
 
     background-color: #f0f0f0;
@@ -46,8 +53,8 @@
     width: 120px;
 }
 .top_menu_undo_redo {
-    left: 200px;
-    width: 120px;
+    left: 180px;
+    width: 150px;
 }
 
 .city_viewport_navigation {
@@ -59,7 +66,7 @@
     width: 250px;
     height: 40px;
 
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
 
     background-color: #f0f0f0;
@@ -95,6 +102,9 @@
     padding: 0px;
 
     border-radius: 200px;
+
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
 }
 
 .building_palette div {
