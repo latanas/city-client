@@ -107,7 +107,6 @@
     /*background-color: #f0f0f0;*/
     border: 1px solid #ccc;
 }
-
 .building_palette div {
     position: absolute;
     
@@ -214,7 +213,115 @@
 
     cursor: pointer;
 }
-
 .building_palette_bulldoze:hover {
     background-color: #6957aa;
 }
+
+.building_sub_palette {
+    display: block;
+    position: fixed;
+    overflow: visible;
+
+    left: 0px;
+    bottom: 0px;  
+
+    width: 500px;
+    height: 500px;
+
+    margin: 0px;
+    padding: 0px;
+}
+.building_sub_palette div {
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    
+    width: 300px;
+    height: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    transform-origin: top left;
+
+    cursor: pointer;
+}
+.building_sub_palette div p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 40px;
+
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+.building_sub_palette div p:hover {
+    background-color: #6957aa;
+}
+
+
+.building_sub_palette_01 {
+    transform: rotate(250deg);
+}
+.building_sub_palette_01 p {
+    transform: rotate(-250deg);
+}
+.building_sub_palette_02 {
+    transform: rotate(270deg);
+}
+.building_sub_palette_02 p {
+    transform: rotate(-270deg);
+}
+
+.building_sub_palette_03 {
+    transform: rotate(290deg);
+}
+.building_sub_palette_03 p {
+    transform: rotate(-290deg);
+}
+
+.building_sub_palette_04 {
+    transform: rotate(310deg);
+}
+.building_sub_palette_04 p {
+    transform: rotate(-310deg);
+}
+
+.building_sub_palette_05 {
+    transform: rotate(330deg);
+}
+.building_sub_palette_05 p {
+    transform: rotate(-330deg);
+}
+
+.building_sub_palette_06 {
+    transform: rotate(350deg);
+}
+.building_sub_palette_06 p {
+    transform: rotate(-350deg);
+}
+
+.building_sub_palette_07 {
+    transform: rotate(10deg);
+}
+.building_sub_palette_07 p {
+    transform: rotate(-10deg);
+}
+
+.building_sub_palette_08 {
+    transform: rotate(30deg);
+}
+.building_sub_palette_08 p {
+    transform: rotate(-30deg);
+}
+
