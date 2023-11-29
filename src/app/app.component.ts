@@ -16,47 +16,47 @@ export class AppComponent {
 
   buildingSubMenus = {
     "Housing" : [
-      new BuildingType("Housing Block A", "assets/Housing01.png", new Point(100, 100)),
-      new BuildingType("Housing Block B", "assets/Housing02.png", new Point(100, 100)),
+      new BuildingType("Housing Block A", "assets/Housing01.png", new Point(150, 100)),
+      new BuildingType("Housing Block B", "assets/Housing02.png", new Point(150, 100)),
       new BuildingType("Housing Block C", "assets/Housing04.png", new Point(100, 100)),
       new BuildingType("Tower House", "assets/Housing05.png", new Point(100, 100)),
-      new BuildingType("Luxury Housing", "assets/Housing03.png", new Point(100, 100)),
-      new BuildingType("Fancy High-Rise Housing", "assets/FancyHighRiseHousing.png", new Point(100, 100)),
+      new BuildingType("Luxury Housing", "assets/Housing03.png", new Point(250, 100)),
+      new BuildingType("Fancy High-Rise Housing", "assets/FancyHighRiseHousing.png", new Point(150, 100)),
     ],
     "Power": [
-      new BuildingType("Coal Plant", "assets/CoalPlant.png", new Point(100, 100)),
-      new BuildingType("Nuclear Plant", "assets/NuclearPlant.png", new Point(100, 100)),
+      new BuildingType("Coal Plant", "assets/CoalPlant.png", new Point(200, 100)),
+      new BuildingType("Nuclear Plant", "assets/NuclearPlant.png", new Point(250, 100)),
     ],
     "Water": [
-      new BuildingType("Docks", "assets/Docks.png", new Point(100, 100)),
-      new BuildingType("Dock Administration", "assets/DocksAdministration.png", new Point(100, 100)),
-      new BuildingType("Water Tower", "assets/WaterTower01.png", new Point(100, 100)),
-      new BuildingType("Large Water Tower", "assets/WaterTower02.png", new Point(100, 100)),
+      new BuildingType("Docks", "assets/Docks.png", new Point(200, 100)),
+      new BuildingType("Dock Administration", "assets/DocksAdministration.png", new Point(250, 100)),
+      new BuildingType("Water Tower", "assets/WaterTower01.png", new Point(50, 100)),
+      new BuildingType("Large Water Tower", "assets/WaterTower02.png", new Point(80, 100)),
     ],
     "Industry": [
-      new BuildingType("Factory", "assets/Factory.png", new Point(100, 100)),
+      new BuildingType("Factory", "assets/Factory.png", new Point(180, 100)),
       new BuildingType("Workshop", "assets/Workshop.png", new Point(100, 100)),
       new BuildingType("Office Tower A", "assets/OfficeTower01.png", new Point(100, 100)),
-      new BuildingType("Office Tower B", "assets/OfficeTower02.png", new Point(100, 100)),
+      new BuildingType("Office Tower B", "assets/OfficeTower02.png", new Point(150, 100)),
       new BuildingType("Office Tower C", "assets/OfficeTower03.png", new Point(100, 100)),
     ],
     "Entertainment": [
-      new BuildingType("Bar & Nightclub", "assets/BarNightclub.png", new Point(100, 100)),
-      new BuildingType("Casino Hotel", "assets/CasinoHotel.png", new Point(100, 100)),
-      new BuildingType("Shopping Mall Hotel", "assets/HotelAndMall01.png", new Point(100, 100)),
-      new BuildingType("Sport Stadium", "assets/Stadium.png", new Point(100, 100)),
+      new BuildingType("Bar & Nightclub", "assets/BarNightclub.png", new Point(150, 100)),
+      new BuildingType("Casino Hotel", "assets/CasinoHotel.png", new Point(250, 100)),
+      new BuildingType("Shopping Mall Hotel", "assets/HotelAndMall01.png", new Point(200, 100)),
+      new BuildingType("Sport Stadium", "assets/Stadium.png", new Point(300, 100)),
     ],
     "Education": [
-      new BuildingType("Humanities College", "assets/UniversityOldCollege.png", new Point(100, 100)),
-      new BuildingType("Science College", "assets/UniversityNewCollege.png", new Point(100, 100)),
-      new BuildingType("Library", "assets/Library01.png", new Point(100, 100)),
+      new BuildingType("Humanities College", "assets/UniversityOldCollege.png", new Point(150, 100)),
+      new BuildingType("Science College", "assets/UniversityNewCollege.png", new Point(150, 100)),
+      new BuildingType("Library", "assets/Library01.png", new Point(150, 100)),
     ],
     "Transport": [
-      new BuildingType("Airport Tower", "assets/AirportControlTower.png", new Point(100, 100)),
-      new BuildingType("Airport Terminal", "assets/AirportTerminal.png", new Point(100, 100)),
+      new BuildingType("Airport Tower", "assets/AirportControlTower.png", new Point(200, 100)),
+      new BuildingType("Airport Terminal", "assets/AirportTerminal.png", new Point(300, 100)),
     ],
     "Parks": [
-      new BuildingType("Graveyard Chapel", "assets/GraveyardChapel.png", new Point(100, 100)),
+      new BuildingType("Graveyard Chapel", "assets/GraveyardChapel.png", new Point(200, 100)),
     ],
   };
 
@@ -87,7 +87,9 @@ export class AppComponent {
 
   public placeBuilding() {
     if( this.currentBuildingType.name != "")   {
-      let pos = this.mousePos.add(new Point(-100,-100));
+      let pos = this.mousePos.add(new Point(
+        -1*(this.currentBuildingType.imageSize.x/2),
+        -1*(this.currentBuildingType.imageSize.x/2)));
 
       this.buildings.push( new Building(this.currentBuildingType, pos) );
       this.currentBuildingType = new BuildingType();
