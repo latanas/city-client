@@ -325,7 +325,7 @@
     transform: rotate(-30deg);
 }
 
-.current_building_placement {
+.building_placement {
     display: block;
     position: fixed;
 
@@ -334,4 +334,15 @@
     
     width: 100px;
     height: 100px;
+}
+
+.current_building_placement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100px;
+    padding: 50px;
+
+    background-color: rgba(100, 100, 100, 0.3);
 }

@@ -56,7 +56,7 @@ export class AppComponent {
       new BuildingType("Airport Terminal", "assets/AirportTerminal.png", new Point(300, 100)),
     ],
     "Parks": [
-      new BuildingType("Graveyard Chapel", "assets/GraveyardChapel.png", new Point(200, 100)),
+      new BuildingType("Graveyard Chapel", "assets/GraveyardChapel.png", new Point(250, 100)),
     ],
   };
 
@@ -105,10 +105,10 @@ export class AppComponent {
   }
 
   public getMousePixelsX(): string {
-    return this.mousePos.add( new Point(-50,-50) ).getPixelsX();
+    return this.mousePos.add( new Point(-100,-100) ).getPixelsX();
   }
 
   public getMousePixelsY(): string {
-    return this.mousePos.add( new Point(-50,-50) ).getPixelsY();
+    return this.mousePos.add( new Point(-100,-100) ).getPixelsY();
   }
 }
