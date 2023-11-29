@@ -84,6 +84,23 @@
     </div>
     }
 </div>
+}@if (currentSubMenu == "Water") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Water"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
+}
+@if (currentSubMenu == "Education") {
+<div class="building_sub_palette">
+    @for (buildingType of buildingSubMenus["Education"]; track $index) {
+    <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)">
+        <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
+    </div>
+    }
+</div>
 }
 
 <div class="building_palette">
