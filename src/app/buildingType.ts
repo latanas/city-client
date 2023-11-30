@@ -15,7 +15,8 @@ export class BuildingType {
             let sz = this.imageSize;
 
             img.onload = function () {
-                if (img.height > 0) {
+                if ((img.width > 0) && (img.height > 0)) {
+                    sz.x = img.width * 0.4;
                     sz.y = sz.x * (img.height / img.width);
                 }
             }
