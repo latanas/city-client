@@ -89,9 +89,10 @@ export class AppComponent {
     if( this.currentBuildingType.name != "")   {
       let pos = this.mousePos.add(new Point(
         -1*(this.currentBuildingType.imageSize.x/2),
-        -1*(this.currentBuildingType.imageSize.x/2)));
+        -1*(this.currentBuildingType.imageSize.y/2)));
 
       this.buildings.push( new Building(this.currentBuildingType, pos) );
+      this.buildings.sort((a:Building, b:Building) => { return (a.pos.y + a.type.imageSize.y) - (b.pos.y + b.type.imageSize.y); }); 
       this.currentBuildingType = new BuildingType();
     }
     else {

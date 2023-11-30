@@ -21,8 +21,8 @@
 
       
 @for (building of buildings; track $index) {
-<div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()" >
-    <img [src]="building.type.imagePath" [width]="building.type.imageSize.x" height="auto" [alt]="building.type.name" [title]="building.type.name">
+<div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()">
+    <img [src]="building.type.imagePath" [width]="building.type.imageSize.x" height="auto" [alt]="building.type.name" [title]="building.type.name" >
 </div>
 }
 @if (currentBuildingType.name != "") {
