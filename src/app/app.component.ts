@@ -60,6 +60,8 @@ export class AppComponent {
     ],
   };
 
+  demolishBuildingType = new BuildingType("Demolish", "assets/Demolish.png", new Point(100, 100));
+
   currentSubMenu = "";
   currentBuildingType = new BuildingType();
 
@@ -86,7 +88,21 @@ export class AppComponent {
   }
 
   public placeBuilding() {
-    if( this.currentBuildingType.name != "")   {
+    if( this.currentBuildingType.name == "Demolish")   {
+      let newBuildings = new Array<Building>();
+
+      for (let b of this.buildings) {
+        if(b.pos.x + 50 > this.mousePos.x ||
+          b.pos.y + 50 > this.mousePos.y ||
+          b.pos.x + b.type.imageSize.x < this.mousePos.x - 50 ||
+          b.pos.y + b.type.imageSize.y < this.mousePos.y - 50 ) {
+            newBuildings.push(b);
+          }
+      }
+      this.buildings = newBuildings;
+      this.currentBuildingType = new BuildingType();
+    }
+    else if( this.currentBuildingType.name != "")   {
       let pos = this.mousePos.add(new Point(
         -1*(this.currentBuildingType.imageSize.x/2),
         -1*(this.currentBuildingType.imageSize.y/2)));
