@@ -7,7 +7,10 @@ import { Building } from './building';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  host:{"(mousemove)": "onMouseMove($event)"}
+  host:{
+    "(mousemove)": "onMouseMove($event)",
+    "(document:keyup)": "onKeyUp($event)"
+  }
 })
 
 export class AppComponent {
@@ -64,6 +67,7 @@ export class AppComponent {
 
   currentSubMenu = "";
   currentBuildingType = new BuildingType();
+  hoverBuildingName = "";
 
   mousePos = new Point();
 
@@ -81,8 +85,17 @@ export class AppComponent {
     this.currentSubMenu = "";
   }
 
+  public hoverBuilding(buildingType: BuildingType) {
+    this.hoverBuildingName = buildingType.name;
+  }
+
+  public hoverOut() {
+    this.hoverBuildingName = "";
+  }
+
   public grabBuilding(buildingType: BuildingType) {
     this.hideSubMenu();
+    this.hoverOut();
 
     if ((this.currentBuildingType.name != "") && (buildingType == this.demolishBuildingType)) {
       this.currentBuildingType = new BuildingType();
@@ -94,6 +107,8 @@ export class AppComponent {
   }
 
   public placeBuilding() {
+    this.hoverOut();
+    
     if( this.currentBuildingType.name == "Demolish")   {
       let newBuildings = new Array<Building>();
 
@@ -133,5 +148,13 @@ export class AppComponent {
 
   public getMousePixelsY(): string {
     return this.mousePos.add( new Point(-100,-100) ).getPixelsY();
+  }
+
+  onKeyUp(e: KeyboardEvent) {
+    //console.log(e);
+    if( e.key == 'x' || e.key == 'X' || e.key == 'Escape') {
+      this.hideSubMenu();
+      this.currentBuildingType = new BuildingType();
+    }
   }
 }

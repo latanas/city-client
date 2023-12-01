@@ -1,7 +1,7 @@
 import { Point } from "./point";
 
 export class BuildingType {
-    name = new String;
+    name = "";
     imagePath = new String;
     imageSize = new Point();
 
