@@ -118,8 +118,20 @@
     </p>
 </div>
 
+<div class="status_info">
+    @if (currentBuildingType.name == "") {
+        Click on the wheel to select building type...
+    }
+    @else if (currentBuildingType.name == "Demolish") {
+        Click on a building to demolish it, or click on <strong>X</strong> to cancel...
+    }
+    @else {
+        Click on the map to place <strong>{{currentBuildingType.name}}</strong>, or click on <strong>X</strong> to cancel...
+    }
+</div>
+
 <div class="version_info">
-    Version 0.0.2<br/><br/>
+    <strong>Version 0.0.2</strong><br/><br/>
     This is an early prototype, try placing some buildings.<br/>
     Building palette works, but the menus are not yet implemented.<br/><br/>
     2023-2024 &copy; Atanas Laskov

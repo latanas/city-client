@@ -346,6 +346,24 @@
 
     background-color: rgba(100, 100, 100, 0.3);
 }
+
+.status_info {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    left: 50px;
+
+    width: 380px;
+
+    text-align: center;
+
+    font-size: 10px;
+    background-color: white;
+    padding: 3px;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+
 .version_info {
     display: block;
     position: fixed;
@@ -353,7 +371,6 @@
     right: 10px;
     text-align: right;
     font-size: 10px;
-    font-weight: bold;
     background-color: white;
     padding: 10px;
     border: 1px solid gray;
