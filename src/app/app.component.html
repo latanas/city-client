@@ -25,6 +25,11 @@
     <img [src]="building.type.imagePath" [width]="building.type.imageSize.x" height="auto" [alt]="building.type.name" [title]="building.type.name" >
 </div>
 }
+@if (currentBuildingType.name != "") {
+<div class="building_placement current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()">
+    <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
+</div>
+}
 
 @if (currentSubMenu == "Housing") {
 <div class="building_sub_palette">
@@ -108,14 +113,10 @@
     <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
     <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
 
-    <p class="building_palette_bulldoze" (click)="grabBuilding(demolishBuildingType)">Bulldoze</p>
+    <p class="building_palette_bulldoze" (click)="grabBuilding(demolishBuildingType)">
+        {{currentBuildingType.name != "" ? 'X' : 'Bulldoze'}}
+    </p>
 </div>
-
-@if (currentBuildingType.name != "") {
-<div class="building_placement current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()">
-    <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
-</div>
-}
 
 <div class="version_info">
     Version 0.0.2<br/><br/>

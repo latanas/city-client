@@ -82,8 +82,14 @@ export class AppComponent {
   }
 
   public grabBuilding(buildingType: BuildingType) {
-    this.hideSubMenu(); 
-    this.currentBuildingType = buildingType;
+    this.hideSubMenu();
+
+    if ((this.currentBuildingType.name != "") && (buildingType == this.demolishBuildingType)) {
+      this.currentBuildingType = new BuildingType();
+    }
+    else {
+      this.currentBuildingType = buildingType;
+    }
 
   }
 
