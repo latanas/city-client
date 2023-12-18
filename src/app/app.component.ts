@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Point } from './point';
 import { BuildingType } from './buildingType';
 import { Building } from './building';
+import packageJson from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -15,55 +16,58 @@ import { Building } from './building';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
+  appVersion = packageJson.version;
+  appAssetFolder = "asset";
+
   buildings = new Array<Building>;
 
   buildingSubMenus = {
     "Housing" : [
-      new BuildingType("Housing Block A", "asset/Housing01.png", new Point(150, 100)),
-      new BuildingType("Housing Block B", "asset/Housing02.png", new Point(150, 100)),
-      new BuildingType("Housing Block C", "asset/Housing04.png", new Point(100, 100)),
-      new BuildingType("Tower House", "asset/Housing05.png", new Point(100, 100)),
-      new BuildingType("Luxury Housing", "asset/Housing03.png", new Point(250, 100)),
-      new BuildingType("Fancy High-Rise Housing", "asset/FancyHighRiseHousing.png", new Point(150, 100)),
+      new BuildingType("Housing Block A", this.appAssetFolder + "/Housing01.png", new Point(150, 100)),
+      new BuildingType("Housing Block B", this.appAssetFolder + "/Housing02.png", new Point(150, 100)),
+      new BuildingType("Housing Block C", this.appAssetFolder + "/Housing04.png", new Point(100, 100)),
+      new BuildingType("Tower House", this.appAssetFolder + "/Housing05.png", new Point(100, 100)),
+      new BuildingType("Luxury Housing", this.appAssetFolder + "/Housing03.png", new Point(250, 100)),
+      new BuildingType("Fancy High-Rise Housing", this.appAssetFolder + "/FancyHighRiseHousing.png", new Point(150, 100)),
     ],
     "Power": [
-      new BuildingType("Coal Plant", "asset/CoalPlant.png", new Point(200, 100)),
-      new BuildingType("Nuclear Plant", "asset/NuclearPlant.png", new Point(250, 100)),
+      new BuildingType("Coal Plant", this.appAssetFolder + "/CoalPlant.png", new Point(200, 100)),
+      new BuildingType("Nuclear Plant", this.appAssetFolder + "/NuclearPlant.png", new Point(250, 100)),
     ],
     "Water": [
-      new BuildingType("Docks", "asset/Docks.png", new Point(200, 100)),
-      new BuildingType("Dock Administration", "asset/DocksAdministration.png", new Point(250, 100)),
-      new BuildingType("Water Tower", "asset/WaterTower01.png", new Point(50, 100)),
-      new BuildingType("Large Water Tower", "asset/WaterTower02.png", new Point(80, 100)),
+      new BuildingType("Docks", this.appAssetFolder + "/Docks.png", new Point(200, 100)),
+      new BuildingType("Dock Administration", this.appAssetFolder + "/DocksAdministration.png", new Point(250, 100)),
+      new BuildingType("Water Tower", this.appAssetFolder + "/WaterTower01.png", new Point(50, 100)),
+      new BuildingType("Large Water Tower", this.appAssetFolder + "/WaterTower02.png", new Point(80, 100)),
     ],
     "Industry": [
-      new BuildingType("Factory", "asset/Factory.png", new Point(180, 100)),
-      new BuildingType("Workshop", "asset/Workshop.png", new Point(100, 100)),
-      new BuildingType("Office Tower A", "asset/OfficeTower01.png", new Point(100, 100)),
-      new BuildingType("Office Tower B", "asset/OfficeTower02.png", new Point(150, 100)),
-      new BuildingType("Office Tower C", "asset/OfficeTower03.png", new Point(100, 100)),
+      new BuildingType("Factory", this.appAssetFolder + "/Factory.png", new Point(180, 100)),
+      new BuildingType("Workshop", this.appAssetFolder + "/Workshop.png", new Point(100, 100)),
+      new BuildingType("Office Tower A", this.appAssetFolder + "/OfficeTower01.png", new Point(100, 100)),
+      new BuildingType("Office Tower B", this.appAssetFolder + "/OfficeTower02.png", new Point(150, 100)),
+      new BuildingType("Office Tower C", this.appAssetFolder + "/OfficeTower03.png", new Point(100, 100)),
     ],
     "Entertainment": [
-      new BuildingType("Bar & Nightclub", "asset/BarNightclub.png", new Point(150, 100)),
-      new BuildingType("Casino Hotel", "asset/CasinoHotel.png", new Point(250, 100)),
-      new BuildingType("Shopping Mall Hotel", "asset/HotelAndMall01.png", new Point(200, 100)),
-      new BuildingType("Sport Stadium", "asset/Stadium.png", new Point(300, 100)),
+      new BuildingType("Bar & Nightclub", this.appAssetFolder + "/BarNightclub.png", new Point(150, 100)),
+      new BuildingType("Casino Hotel", this.appAssetFolder + "/CasinoHotel.png", new Point(250, 100)),
+      new BuildingType("Shopping Mall Hotel", this.appAssetFolder + "/HotelAndMall01.png", new Point(200, 100)),
+      new BuildingType("Sport Stadium", this.appAssetFolder + "/Stadium.png", new Point(300, 100)),
     ],
     "Education": [
-      new BuildingType("Humanities College", "asset/UniversityOldCollege.png", new Point(150, 100)),
-      new BuildingType("Science College", "asset/UniversityNewCollege.png", new Point(150, 100)),
-      new BuildingType("Library", "asset/Library01.png", new Point(150, 100)),
+      new BuildingType("Humanities College", this.appAssetFolder + "/UniversityOldCollege.png", new Point(150, 100)),
+      new BuildingType("Science College", this.appAssetFolder + "/UniversityNewCollege.png", new Point(150, 100)),
+      new BuildingType("Library", this.appAssetFolder + "/Library01.png", new Point(150, 100)),
     ],
     "Transport": [
-      new BuildingType("Airport Tower", "asset/AirportControlTower.png", new Point(200, 100)),
-      new BuildingType("Airport Terminal", "asset/AirportTerminal.png", new Point(300, 100)),
+      new BuildingType("Airport Tower", this.appAssetFolder + "/AirportControlTower.png", new Point(200, 100)),
+      new BuildingType("Airport Terminal", this.appAssetFolder + "/AirportTerminal.png", new Point(300, 100)),
     ],
     "Parks": [
-      new BuildingType("Graveyard Chapel", "asset/GraveyardChapel.png", new Point(250, 100)),
+      new BuildingType("Graveyard Chapel", this.appAssetFolder + "/GraveyardChapel.png", new Point(250, 100)),
     ],
   };
 
-  demolishBuildingType = new BuildingType("Demolish", "asset/Demolish.png", new Point(100, 100));
+  demolishBuildingType = new BuildingType("Demolish", this.appAssetFolder + "/Demolish.png", new Point(100, 100));
 
   currentSubMenu = "";
   currentBuildingType = new BuildingType();
