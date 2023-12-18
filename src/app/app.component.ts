@@ -14,7 +14,7 @@ import { Building } from './building';
 })
 
 export class AppComponent {
-  title = 'City';
+  title = 'City @ Atanas Laskov';
   buildings = new Array<Building>;
 
   buildingSubMenus = {
