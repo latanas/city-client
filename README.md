@@ -15,10 +15,8 @@ To use the application go to https://www.laskov.co.uk/city/
 
 ## Running Tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
-To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `ng test` to execute the unit tests via Jasmine
+Run `ng e2e` to execute the end-to-end tests (currently not implemented).
 
 ## Adding Components
 
