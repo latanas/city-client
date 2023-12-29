@@ -6,7 +6,7 @@
 
   http://www.laskov.co.uk/city/
 */
-import { BuildingType } from "./buildingType";
+import { BuildingType } from "./building-type";
 import { Point } from "./point";
 
 // Single instance of a building placed in the city

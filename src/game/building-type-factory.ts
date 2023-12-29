@@ -7,7 +7,7 @@
   http://www.laskov.co.uk/city/
 */
 import { Point } from "./point";
-import { BuildingType } from "./buildingType"
+import { BuildingType } from "./building-type"
 
 // All the types of buildings that can be placed in the game
 //

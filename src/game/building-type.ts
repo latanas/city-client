@@ -7,7 +7,7 @@
   http://www.laskov.co.uk/city/
 */
 import { Point } from "./point";
-import { RectList } from "./rectList";
+import { RectList } from "./rect-list";
 
 // Type of building which can be placed in a city
 //

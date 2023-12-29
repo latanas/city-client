@@ -20,7 +20,7 @@
 </div>
 
       
-@for (building of buildings; track $index) {
+@for (building of city.getBuildingsCopy(); track $index) {
 <div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()">
     <img [src]="building.type.imagePath" [width]="building.type.imageSize.x" height="auto" [alt]="building.type.name" [title]="building.type.name" >
 </div>
@@ -33,7 +33,7 @@
 
 @if (currentSubMenu == "Housing") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Housing"]; track $index) {
+    @for (buildingType of buildingTypePalette["Housing"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -42,7 +42,7 @@
 }
 @if (currentSubMenu == "Power") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Power"]; track $index) {
+    @for (buildingType of buildingTypePalette["Power"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -51,7 +51,7 @@
 }
 @if (currentSubMenu == "Industry") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Industry"]; track $index) {
+    @for (buildingType of buildingTypePalette["Industry"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -60,7 +60,7 @@
 }
 @if (currentSubMenu == "Entertainment") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Entertainment"]; track $index) {
+    @for (buildingType of buildingTypePalette["Entertainment"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -69,7 +69,7 @@
 }
 @if (currentSubMenu == "Transport") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Transport"]; track $index) {
+    @for (buildingType of buildingTypePalette["Transport"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -78,7 +78,7 @@
 }
 @if (currentSubMenu == "Parks") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Parks"]; track $index) {
+    @for (buildingType of buildingTypePalette["Parks"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -86,7 +86,7 @@
 </div>
 }@if (currentSubMenu == "Water") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Water"]; track $index) {
+    @for (buildingType of buildingTypePalette["Water"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>
@@ -95,7 +95,7 @@
 }
 @if (currentSubMenu == "Education") {
 <div class="building_sub_palette">
-    @for (buildingType of buildingSubMenus["Education"]; track $index) {
+    @for (buildingType of buildingTypePalette["Education"]; track $index) {
     <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
         <p><img [src]="buildingType.imagePath" width="50px" height="auto"></p>
     </div>

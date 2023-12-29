@@ -7,9 +7,9 @@
   http://www.laskov.co.uk/city/
 */
 import { Point } from "./point";
-import { BuildingType } from "./buildingType"
-import { BuildingTypes } from "./buildingTypeFactory"
-import { BuildingTypeFactory } from "./buildingTypeFactory"
+import { BuildingType } from "./building-type"
+import { BuildingTypes } from "./building-type-factory"
+import { BuildingTypeFactory } from "./building-type-factory"
 
 // Default generator for all the building types
 //

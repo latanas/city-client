@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import packageJson from '../../package.json';
 
 import { Point } from '../game/point';
-import { BuildingType } from '../game/buildingType';
+import { BuildingType } from '../game/building-type';
 import { Building } from '../game/building';
 
-import { BuildingTypes } from 'src/game/buildingTypeFactory';
+import { BuildingTypes } from 'src/game/building-type-factory';
 import { BuildingTypeFactoryService } from '../services/building-type-factory.service';
+
+import { City } from 'src/game/city';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +25,10 @@ export class AppComponent {
   appVersion = packageJson.version;
   appAssetFolder = "asset";
 
-  buildings = new Array<Building>;
-
-  buildingSubMenus: BuildingTypes;
+  buildingTypePalette: BuildingTypes;
   demolishBuildingType = new BuildingType("Demolish", this.appAssetFolder + "/Demolish.png", new Point(100, 100));
+
+  city = new City();
 
   currentSubMenu = "";
   currentBuildingType = new BuildingType();
@@ -35,7 +37,7 @@ export class AppComponent {
   mousePos = new Point();
 
   constructor(btfService: BuildingTypeFactoryService) {
-    this.buildingSubMenus = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
+    this.buildingTypePalette = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
   }
 
   public showSubMenu(menuName: string) {
@@ -77,17 +79,7 @@ export class AppComponent {
     this.hoverOut();
     
     if( this.currentBuildingType.name == "Demolish")   {
-      let newBuildings = new Array<Building>();
-
-      for (let b of this.buildings) {
-        if(b.pos.x + 50 > this.mousePos.x ||
-          b.pos.y + 50 > this.mousePos.y ||
-          b.pos.x + b.type.imageSize.x < this.mousePos.x - 50 ||
-          b.pos.y + b.type.imageSize.y < this.mousePos.y - 50 ) {
-            newBuildings.push(b);
-          }
-      }
-      this.buildings = newBuildings;
+      this.city.demolish(this.mousePos, 50);
       this.currentBuildingType = new BuildingType();
     }
     else if( this.currentBuildingType.name != "")   {
@@ -95,8 +87,7 @@ export class AppComponent {
         -1*(this.currentBuildingType.imageSize.x/2),
         -1*(this.currentBuildingType.imageSize.y/2)));
 
-      this.buildings.push( new Building(this.currentBuildingType, pos) );
-      this.buildings.sort((a:Building, b:Building) => { return (a.pos.y + a.type.imageSize.y) - (b.pos.y + b.type.imageSize.y); }); 
+      this.city.place( new Building(this.currentBuildingType, pos) );
       this.currentBuildingType = new BuildingType();
     }
     else {

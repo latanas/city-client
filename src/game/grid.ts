@@ -9,13 +9,13 @@
 
 import { Point } from "./point";
 
-enum GridSnapType {
+export enum GridSnapType {
   TOP_LEFT, CENTER
 }
 
 // 2D grid with ability to snap points to the specified grid size
 //
-class Grid {
+export class Grid {
   private dimension: Point;
 
   constructor(dimension: Point) {
