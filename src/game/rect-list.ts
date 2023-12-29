@@ -42,4 +42,13 @@ export class RectList {
         }
         return true;
     }
+
+    public static translate(rl: RectList, offset: Point): RectList {
+        let newRects: Rect[] = [];
+
+        for(let r of rl.rects) {
+            newRects.push( Rect.translate(r, offset) );
+        }
+        return new RectList(newRects);
+    }
 }

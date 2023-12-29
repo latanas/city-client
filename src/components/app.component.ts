@@ -87,8 +87,9 @@ export class AppComponent {
         -1*(this.currentBuildingType.imageSize.x/2),
         -1*(this.currentBuildingType.imageSize.y/2)));
 
-      this.city.place( new Building(this.currentBuildingType, pos) );
-      this.currentBuildingType = new BuildingType();
+      if( this.city.place( new Building(this.currentBuildingType, pos)) ) {
+        this.currentBuildingType = new BuildingType();
+      }
     }
     else {
       this.hideSubMenu();

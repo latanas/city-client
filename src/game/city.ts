@@ -24,9 +24,22 @@ export class City {
     return this.items.slice();
   }
 
-  // Place a new building
+  isPlaceable(newBuilding: Building) {
+    for (let cityBuilding of this.items) {
+      if( newBuilding.getOccupiedArea().isIntersectingRectList(cityBuilding.getOccupiedArea()) ) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Try to place a new building.
+  // The city class can reject this if there are already other buildings at the building's location.
   //
-  place(b: Building) {
+  place(b: Building): boolean {
+    if (!this.isPlaceable(b)) {
+      return false;
+    }
     let bottomY = b.pos.y + b.type.imageSize.y;
     let i = 0;
 
@@ -39,6 +52,7 @@ export class City {
       this.items.push(b);
     }
     // this.buildings.sort((a:Building, b:Building) => { return (a.pos.y + a.type.imageSize.y) - (b.pos.y + b.type.imageSize.y); }); 
+    return true;
   }
 
   // Demolish a building

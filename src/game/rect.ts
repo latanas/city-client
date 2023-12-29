@@ -47,4 +47,8 @@ export class Rect {
 
         return true;
     }
+
+    static translate(rect: Rect, offset: Point): Rect {
+        return new Rect(Point.plus(rect.pt[0], offset), Point.plus(rect.pt[1], offset));
+    }
 }
