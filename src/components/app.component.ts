@@ -6,7 +6,7 @@ import { BuildingType } from '../game/buildingType';
 import { Building } from '../game/building';
 
 import { BuildingTypes } from 'src/game/buildingTypeFactory';
-import { BuildingTypeFactorySurrealist } from 'src/game/buildingTypeFactorySurrealist';
+import { BuildingTypeFactoryService } from '../services/building-type-factory.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AppComponent {
 
   buildings = new Array<Building>;
 
-  buildingSubMenus: BuildingTypes = (new BuildingTypeFactorySurrealist).getBuildingTypes(this.appAssetFolder);
+  buildingSubMenus: BuildingTypes;
   demolishBuildingType = new BuildingType("Demolish", this.appAssetFolder + "/Demolish.png", new Point(100, 100));
 
   currentSubMenu = "";
@@ -33,6 +33,10 @@ export class AppComponent {
   hoverBuildingName = "";
 
   mousePos = new Point();
+
+  constructor(btfService: BuildingTypeFactoryService) {
+    this.buildingSubMenus = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
+  }
 
   public showSubMenu(menuName: string) {
     if (this.currentSubMenu != menuName) {
