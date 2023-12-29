@@ -24,6 +24,6 @@ export type BuildingTypes = {
 
 // Factory interface for populating the buildings
 //
-export interface BuildingTypeFactory {
+export interface AbstractBuildingTypeFactory {
     getBuildingTypes(assetFolder: string): BuildingTypes;
 }

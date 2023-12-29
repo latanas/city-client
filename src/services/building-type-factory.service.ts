@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BuildingTypeFactorySurrealist } from 'src/game/building-type-factory-surrealist';
+import { AbstractBuildingTypeFactory } from 'src/game/abstract-building-type-factory';
+import { SurrealistBuildingTypeFactory } from 'src/game/surrealist-building-type-factory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuildingTypeFactoryService {
-  constructor() {
-  }
-
-  public getBuildingTypeFactory() {
-    return new BuildingTypeFactorySurrealist();
+  public getBuildingTypeFactory(): AbstractBuildingTypeFactory {
+    return new SurrealistBuildingTypeFactory();
   }
 }

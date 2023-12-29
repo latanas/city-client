@@ -15,7 +15,8 @@ To use the application go to https://www.laskov.co.uk/city/
 
 ## Running Tests
 
-Run `ng test` to execute the unit tests via Jasmine
+Run `ng test` to execute the unit tests via Jasmine.
+
 Run `ng e2e` to execute the end-to-end tests (currently not implemented).
 
 ## Adding Components

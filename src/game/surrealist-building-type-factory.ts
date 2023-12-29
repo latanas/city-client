@@ -8,12 +8,12 @@
 */
 import { Point } from "./point";
 import { BuildingType } from "./building-type"
-import { BuildingTypes } from "./building-type-factory"
-import { BuildingTypeFactory } from "./building-type-factory"
+import { BuildingTypes } from "./abstract-building-type-factory"
+import { AbstractBuildingTypeFactory } from "./abstract-building-type-factory"
 
 // Default generator for all the building types
 //
-export class BuildingTypeFactorySurrealist implements BuildingTypeFactory {
+export class SurrealistBuildingTypeFactory implements AbstractBuildingTypeFactory {
     public getBuildingTypes(assetFolder: string): BuildingTypes {
         return {
             Housing: [

@@ -5,7 +5,7 @@ import { Point } from '../game/point';
 import { BuildingType } from '../game/building-type';
 import { Building } from '../game/building';
 
-import { BuildingTypes } from 'src/game/building-type-factory';
+import { BuildingTypes } from 'src/game/abstract-building-type-factory';
 import { BuildingTypeFactoryService } from '../services/building-type-factory.service';
 
 import { City } from 'src/game/city';
