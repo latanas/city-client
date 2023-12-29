@@ -5,8 +5,8 @@ import { Point } from '../game/point';
 import { BuildingType } from '../game/buildingType';
 import { Building } from '../game/building';
 
-import { BuildingTypeGroups } from 'src/game/buildingTypeFactory';
-import { BuildingTypeFactory } from 'src/game/buildingTypeFactory';
+import { BuildingTypes } from 'src/game/buildingTypeFactory';
+import { BuildingTypeFactorySurrealist } from 'src/game/buildingTypeFactorySurrealist';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AppComponent {
 
   buildings = new Array<Building>;
 
-  buildingSubMenus: BuildingTypeGroups = BuildingTypeFactory.getDefaultBuildingTypes(this.appAssetFolder);
+  buildingSubMenus: BuildingTypes = (new BuildingTypeFactorySurrealist).getBuildingTypes(this.appAssetFolder);
   demolishBuildingType = new BuildingType("Demolish", this.appAssetFolder + "/Demolish.png", new Point(100, 100));
 
   currentSubMenu = "";
