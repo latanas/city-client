@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { BuildingPaletteComponent } from './building-palette.component';
 import { MainMenuComponent } from './main-menu.component';
+import { UndoRedoMenuComponent } from './undo-redo-menu.component';
 import { NavigationMenuComponent } from './navigation-menu.component';
 import { VersionInformationComponent } from './version-information.component';
 
@@ -14,6 +15,7 @@ import { VersionInformationComponent } from './version-information.component';
     AppComponent,
     BuildingPaletteComponent,
     MainMenuComponent,
+    UndoRedoMenuComponent,
     NavigationMenuComponent,
     VersionInformationComponent,
   ],
