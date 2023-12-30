@@ -6,6 +6,8 @@ import { Building } from '../game/building';
 
 import { City } from 'src/game/city';
 
+import { BuildingPaletteComponent } from './building-palette.component';
+
 @Component({
   selector: 'app-root',
   //standalone: true,
@@ -20,36 +22,41 @@ import { City } from 'src/game/city';
 export class AppComponent {
   title = 'City @ Atanas Laskov';
   city = new City();
-
-  currentBuilding = new Building();
+  currentBuildingTool = new Building();
   mousePos = new Point();
   gizmoRadius = 150;
 
-  public buildingTypeSelected(bt: BuildingType) {
-    this.currentBuilding.type = bt;
-    this.currentBuilding.pos = this.getMouseCenteredBuildingPos();
+  public buildingToolSelectedEvent(bt: BuildingType) {
+    this.currentBuildingTool.type = bt;
+    this.currentBuildingTool.pos = this.getMouseCenteredBuildingPos();
   }
 
-  public placeBuilding() {
-    //this.hoverOut();
+  public placeBuilding(buildingPalette: BuildingPaletteComponent) {
+    buildingPalette.hoverOut();
     
-    if( this.currentBuilding.type.name == "Demolish")   {
-      this.city.demolish(this.mousePos, this.gizmoRadius);
-      this.currentBuilding = new Building();
+    if( this.currentBuildingTool.type.name == "Demolish")   {
+      this.city.demolish(this.currentBuildingTool.getOccupiedArea());
+      this.finishBuildingToolAction(buildingPalette);
     }
-    else if( this.currentBuilding.type.name != "")   {
-      if( this.city.place( this.currentBuilding ) ) {
-        this.currentBuilding = new Building();
+    else if( this.currentBuildingTool.type.name != "")   {
+      if( this.city.place( this.currentBuildingTool ) ) {
+        this.finishBuildingToolAction(buildingPalette);
       }
     }
     else {
-      //this.hideSubMenu();
+      buildingPalette.hideSubMenu();
+      this.finishBuildingToolAction(buildingPalette);
     }
+  }
+
+  finishBuildingToolAction(buildingPalette: BuildingPaletteComponent) {
+    this.currentBuildingTool = new Building();
+    buildingPalette.finishToolAction();
   }
 
   onMouseMove(e: MouseEvent) {
     this.mousePos = new Point(e.clientX, e.clientY);
-    this.currentBuilding.pos = this.getMouseCenteredBuildingPos();
+    this.currentBuildingTool.pos = this.getMouseCenteredBuildingPos();
   }
 
   getMouseCenteredPosition(size: Point): Point {
@@ -57,7 +64,7 @@ export class AppComponent {
   }
 
   getMouseCenteredBuildingPos(): Point {
-    return this.getMouseCenteredPosition(this.currentBuilding.type.imageSize);
+    return this.getMouseCenteredPosition(this.currentBuildingTool.type.imageSize);
   }
 
   getMouseCenteredGizmoPos(): Point {

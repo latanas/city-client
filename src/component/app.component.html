@@ -5,7 +5,7 @@
 <navigation-menu />
 
 @for (building of city.getBuildingsCopy(); track $index) {
-    @if(building.getOccupiedArea().isIntersectingRectList(currentBuilding.getOccupiedArea())) {
+    @if(building.getOccupiedArea().isIntersectingRectList( currentBuildingTool.getOccupiedArea() )) {
         @for (r of building.getOccupiedArea().rects; track $index) {
             <div class="building_placement occupied_area"
                 [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
@@ -23,14 +23,18 @@
         [alt]="building.type.name" [title]="building.type.name" />
 }
 
-@if (currentBuilding.type.name != "") {
-    <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuilding)"
+<building-palette (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
+
+@if (currentBuildingTool.type.name != "") {
+    @if(currentBuildingTool.type.name != "Demolish") {
+    <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
         [style.top]="getMouseCenteredGizmoPos().getPixelsY()" >
     </div>
+    }
 
-    @if(!city.isPlaceable(currentBuilding) && currentBuilding.type.name != "Demolish") {
-        @for (r of currentBuilding.getOccupiedArea().rects; track $index) {
+    @if(!city.isPlaceable(currentBuildingTool) && currentBuildingTool.type.name != "Demolish") {
+        @for (r of currentBuildingTool.getOccupiedArea().rects; track $index) {
             <div class="building_placement occupied_area"
                 [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
                 [style.width]="r.getSize().getPixelsX()" [style.height]="r.getSize().getPixelsY()">
@@ -39,15 +43,13 @@
     }
 
     <img class="building_placement"
-        [src]="currentBuilding.type.imagePath"
-        [style.left]="currentBuilding.pos.getPixelsX()" 
-        [style.top]="currentBuilding.pos.getPixelsY()"
-        [style.width]="currentBuilding.type.imageSize.getPixelsX()"
-        [style.height]="currentBuilding.type.imageSize.getPixelsY()"
-        (click)="placeBuilding()">
+        [src]="currentBuildingTool.type.imagePath"
+        [style.left]="currentBuildingTool.pos.getPixelsX()" 
+        [style.top]="currentBuildingTool.pos.getPixelsY()"
+        [style.width]="currentBuildingTool.type.imageSize.getPixelsX()"
+        [style.height]="currentBuildingTool.type.imageSize.getPixelsY()"
+        (click)="placeBuilding(buildingPalette)">
 }
-
-<building-palette (buildingTypeSelectedEvent)="buildingTypeSelected($event)" />
 
 <version-information />
 

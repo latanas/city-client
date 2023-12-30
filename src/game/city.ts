@@ -9,6 +9,7 @@
 import { Building } from "./building";
 import { Point } from "./point";
 import { Grid } from "./grid";
+import { RectList } from "./rect-list";
 
 // Container for all the buildings in the city
 // This class keeps them sorted in order of the Y coordinate, so  buildings that are "in front" will appear near the end of the list
@@ -55,9 +56,22 @@ export class City {
     return true;
   }
 
+  // Demolish an area of the city
+  //
+  demolish(area: RectList) {
+    let newItems = new Array<Building>();
+
+    for (let b of this.items) {
+      if (!b.getOccupiedArea().isIntersectingRectList(area)) {
+        newItems.push(b);
+      }
+    }
+    this.items = newItems;
+  }
+
   // Demolish a building
   // 
-  demolish(pos: Point, area: number) {
+  /*demolish(pos: Point, area: number) {
     let newItems = new Array<Building>();
 
     for (let b of this.items) {
@@ -70,7 +84,7 @@ export class City {
     }
 
     this.items = newItems;
-  }
+  }*/
 
   // Execute a function on each building
   //

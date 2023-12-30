@@ -1,8 +1,9 @@
-import { Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 import { Point } from '../game/point';
+import { Rect } from '../game/rect';
+import { RectList } from '../game/rect-list';
 import { BuildingType } from '../game/building-type';
-import { Building } from '../game/building';
 
 import { BuildingTypes } from 'src/game/abstract-building-type-factory';
 import { BuildingTypeFactoryService } from '../service/building-type-factory.service';
@@ -18,19 +19,32 @@ import { BuildingTypeFactoryService } from '../service/building-type-factory.ser
   }
 })
 export class BuildingPaletteComponent {
-  @Output() buildingTypeSelectedEvent = new EventEmitter<BuildingType>();
+  @Output() buildingToolSelectedEvent = new EventEmitter<BuildingType>();
 
   appAssetFolder = "asset";
-  demolishBuildingType = new BuildingType("Demolish", this.appAssetFolder + "/Demolish.png", new Point(100, 100));
+
+  currentBuildingType: BuildingType = new BuildingType();
+  demolishBuildingType = this.createDemolishBuildingType();
   buildingTypePalette: BuildingTypes;
 
   currentSubMenu = "";
   hoverBuildingName = "";
-
-  currentBuildingType = new BuildingType();
   
   constructor(btfService: BuildingTypeFactoryService) {
     this.buildingTypePalette = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
+  }
+
+  createDemolishBuildingType() {
+    return new BuildingType(
+      "Demolish",
+      this.appAssetFolder + "/Demolish.png",
+      new Point(100, 100),
+      new RectList([new Rect(new Point(0,0), new Point(100,100))])
+    );
+  }
+
+  public finishToolAction() {
+    this.currentBuildingType = new BuildingType();
   }
 
   public hideSubMenu() {
@@ -49,7 +63,7 @@ export class BuildingPaletteComponent {
       this.hideSubMenu();
     }
     this.currentBuildingType = new BuildingType();
-    this.buildingTypeSelectedEvent.emit(this.currentBuildingType);
+    this.buildingToolSelectedEvent.emit(this.currentBuildingType);
   }
   
   public hoverBuilding(buildingType: BuildingType) {
@@ -66,7 +80,7 @@ export class BuildingPaletteComponent {
     else {
       this.currentBuildingType = buildingType;
     }
-    this.buildingTypeSelectedEvent.emit(this.currentBuildingType);
+    this.buildingToolSelectedEvent.emit(this.currentBuildingType);
   }
 
   onKeyUp(e: KeyboardEvent) {
@@ -74,7 +88,7 @@ export class BuildingPaletteComponent {
     if( e.key == 'x' || e.key == 'X' || e.key == 'Escape') {
       this.hideSubMenu();
       this.currentBuildingType = new BuildingType();
-      this.buildingTypeSelectedEvent.emit(this.currentBuildingType);
+      this.buildingToolSelectedEvent.emit(this.currentBuildingType);
     }
   }
 }
