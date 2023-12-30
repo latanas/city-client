@@ -1,45 +1,5 @@
 
-.top_menu {
-    position: fixed;
-    left: 0px;
-
-    display: block;
-    height: 60px;
-
-    margin: 0px;
-    padding: 0px;
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-
-    border-radius: 20px;
-    margin-top: -20px;
-}
-
-.top_menu span {
-    display: inline-block;
-    margin: 5px;
-    padding: 5px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-}
-
-.top_menu span:hover {
-    background-color: #6957aa;
-}
-
 .top_menu_main {
     left: 20px;
     width: 120px;
-}
-
-.top_menu_undo_redo {
-    left: 180px;
-    width: 150px;
 }
