@@ -15,6 +15,28 @@
 
 }
 
+.building_placement {
+    display: block;
+    position: fixed;
+
+    top: 100px;
+    left: 100px;
+    
+    width: 100px;
+    height: 100px;
+}
+
+.current_building_placement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100px;
+    padding: 50px;
+
+    background-color: rgba(100, 100, 100, 0.3);
+}
+
 .top_menu {
     position: fixed;
     left: 0px;
@@ -85,282 +107,6 @@
 }
 .city_viewport_navigation span:hover {
     background-color: #6957aa;
-}
-
-.building_palette {
-    display: block;
-    position: fixed;
-    overflow: hidden;
-
-    left: 50px;
-    bottom: 50px;  
-
-    width: 400px;
-    height: 400px;
-
-    margin: 0px;
-    padding: 0px;
-
-    border-radius: 200px;
-
-    background-color: rgba(100, 100, 100, 0.3);
-    /*background-color: #f0f0f0;*/
-    border: 1px solid #ccc;
-}
-.building_palette div {
-    position: absolute;
-    
-    top: 50%;
-    left: 50%;
-    
-    width: 200px;
-    height: 160px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transform-origin: top left;
-
-    clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
-    
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-
-    cursor: pointer;
-}
-
-.building_palette div:hover {
-    background-color: #6957aa;
-}
-
-.building_palette_01 {
-    transform: rotate(0deg);
-}
-.building_palette_01 p {
-    transform: rotate(0deg);
-}
-
-.building_palette_02 {
-    transform: rotate(45deg);
-}
-.building_palette_02 p {
-    transform: rotate(-45deg);
-}
-
-.building_palette_03 {
-    transform: rotate(90deg);
-}
-.building_palette_03 p {
-    transform: rotate(-90deg);
-}
-
-.building_palette_04 {
-    transform: rotate(135deg);
-}
-.building_palette_04 p {
-    transform: rotate(-135deg);
-}
-
-.building_palette_05 {
-    transform: rotate(180deg);
-}
-.building_palette_05 p {
-    transform: rotate(-180deg);
-}
-
-.building_palette_06 {
-    transform: rotate(225deg);
-}
-.building_palette_06 p {
-    transform: rotate(-225deg);
-}
-
-.building_palette_07 {
-    transform: rotate(270deg);
-}
-.building_palette_07 p {
-    transform: rotate(-270deg);
-}
-
-.building_palette_08 {
-    transform: rotate(315deg);
-}
-.building_palette_08 p {
-    transform: rotate(-315deg);
-}
-
-.building_palette_bulldoze {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 100px;
-    height: 100px;
-    
-    margin-left: -50px;
-    margin-top: -50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50px;
-
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-
-    cursor: pointer;
-}
-.building_palette_bulldoze:hover {
-    background-color: #6957aa;
-}
-
-.building_sub_palette {
-    display: block;
-    position: fixed;
-    overflow: visible;
-
-    left: 0px;
-    bottom: 0px;  
-
-    width: 500px;
-    height: 500px;
-
-    margin: 0px;
-    padding: 0px;
-}
-.building_sub_palette div {
-    position: absolute;
-    
-    top: 50%;
-    left: 50%;
-    
-    width: 300px;
-    height: 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    transform-origin: top left;
-
-    cursor: pointer;
-}
-.building_sub_palette div p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 80px;
-    height: 80px;
-
-    border-radius: 40px;
-
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-
-    font-size: 10px;
-
-    cursor: pointer;
-}
-.building_sub_palette div p:hover {
-    background-color: #6957aa;
-}
-
-
-.building_sub_palette_01 {
-    transform: rotate(250deg);
-}
-.building_sub_palette_01 p {
-    transform: rotate(-250deg);
-}
-.building_sub_palette_02 {
-    transform: rotate(270deg);
-}
-.building_sub_palette_02 p {
-    transform: rotate(-270deg);
-}
-
-.building_sub_palette_03 {
-    transform: rotate(290deg);
-}
-.building_sub_palette_03 p {
-    transform: rotate(-290deg);
-}
-
-.building_sub_palette_04 {
-    transform: rotate(310deg);
-}
-.building_sub_palette_04 p {
-    transform: rotate(-310deg);
-}
-
-.building_sub_palette_05 {
-    transform: rotate(330deg);
-}
-.building_sub_palette_05 p {
-    transform: rotate(-330deg);
-}
-
-.building_sub_palette_06 {
-    transform: rotate(350deg);
-}
-.building_sub_palette_06 p {
-    transform: rotate(-350deg);
-}
-
-.building_sub_palette_07 {
-    transform: rotate(10deg);
-}
-.building_sub_palette_07 p {
-    transform: rotate(-10deg);
-}
-
-.building_sub_palette_08 {
-    transform: rotate(30deg);
-}
-.building_sub_palette_08 p {
-    transform: rotate(-30deg);
-}
-
-.building_placement {
-    display: block;
-    position: fixed;
-
-    top: 100px;
-    left: 100px;
-    
-    width: 100px;
-    height: 100px;
-}
-
-.current_building_placement {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 100px;
-    padding: 50px;
-
-    background-color: rgba(100, 100, 100, 0.3);
-}
-
-.status_info {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-
-    width: 450px;
-
-    text-align: center;
-
-    background-color: white;
-    padding: 3px;
-    border: 1px solid gray;
-    border-radius: 20px;
 }
 
 .version_info {
