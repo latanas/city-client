@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import packageJson from '../../package.json';
 
 import { Point } from '../game/point';
 import { BuildingType } from '../game/building-type';
@@ -7,12 +6,10 @@ import { Building } from '../game/building';
 
 import { City } from 'src/game/city';
 
-import { BuildingPaletteComponent } from './building-palette.component';
-
 @Component({
   selector: 'app-root',
   //standalone: true,
-  //imports: [BuildingPaletteComponent],
+  //imports: [],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host:{
@@ -22,7 +19,6 @@ import { BuildingPaletteComponent } from './building-palette.component';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  appVersion = packageJson.version;
   city = new City();
   
   mousePos = new Point();

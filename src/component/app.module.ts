@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BuildingPaletteComponent } from './building-palette.component';
 import { MainMenuComponent } from './main-menu.component';
 import { NavigationMenuComponent } from './navigation-menu.component';
+import { VersionInformationComponent } from './version-information.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NavigationMenuComponent } from './navigation-menu.component';
     BuildingPaletteComponent,
     MainMenuComponent,
     NavigationMenuComponent,
+    VersionInformationComponent,
   ],
   imports: [
     BrowserModule,
