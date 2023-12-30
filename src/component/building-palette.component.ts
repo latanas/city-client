@@ -5,7 +5,7 @@ import { BuildingType } from '../game/building-type';
 import { Building } from '../game/building';
 
 import { BuildingTypes } from 'src/game/abstract-building-type-factory';
-import { BuildingTypeFactoryService } from '../services/building-type-factory.service';
+import { BuildingTypeFactoryService } from '../service/building-type-factory.service';
 
 @Component({
   selector: 'building-palette',

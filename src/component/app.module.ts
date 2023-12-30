@@ -5,11 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { BuildingPaletteComponent } from './building-palette.component';
+import { MainMenuComponent } from './main-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuildingPaletteComponent
+    BuildingPaletteComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

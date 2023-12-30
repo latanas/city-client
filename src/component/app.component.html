@@ -1,23 +1,8 @@
-
 <div class="city_viewport">
     <!--City View-->
 </div>
 
-<div class="top_menu top_menu_main">
-    <span>&equiv; Main Menu</span>
-</div>
-
-<div class="top_menu top_menu_undo_redo">
-    <span>Undo</span>
-    <span>Redo</span>
-</div>
-
-<div class="city_viewport_navigation">
-    <span>Pan</span>
-    <span>Zoom +</span>
-    <span>Zoom -</span>
-    <span>Help</span>
-</div>
+<main-menu />
 
 @for (building of city.getBuildingsCopy(); track $index) {
     <div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()">
@@ -25,7 +10,7 @@
     </div>
 }
 
-@if (currentBuildingType.name != "") {
+@if (currentBuildingType.name != "") { 
     <div class="building_placement current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()">
         <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
     </div>

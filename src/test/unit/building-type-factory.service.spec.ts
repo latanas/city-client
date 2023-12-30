@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BuildingTypeFactoryService } from '../../services/building-type-factory.service';
+import { BuildingTypeFactoryService } from '../../service/building-type-factory.service';
 
 describe('BuildingTypeFactoryService', () => {
   let service: BuildingTypeFactoryService;
