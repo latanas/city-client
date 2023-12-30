@@ -1,4 +1,4 @@
-.city_viewport {
+.city_background {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -26,13 +26,21 @@
     height: 100px;
 }
 
-.current_building_placement {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 100px;
-    padding: 50px;
-
-    background-color: rgba(100, 100, 100, 0.3);
+.occupied_area {
+    background-color: rgba(255, 0, 0, 0.3);
+    border-radius: 20px;
 }
+
+.gizmo_area {
+    padding: 100px;
+    border-radius: 150px;
+
+    border: 1px dashed rgb(0, 0, 255);
+}
+
+
+.gizmo_ok {
+    background-color: rgba(0, 0, 255, 0.3);
+    border: 1px dashed rgb(0, 0, 255);
+}
+

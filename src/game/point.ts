@@ -64,6 +64,12 @@ export class Point {
         return a.x*b.y - a.y*b.x;
     }
 
+    static getCenteredPosition(center: Point, size: Point) {
+        return Point.plus(center, new Point(
+          -1*(size.x/2),
+          -1*(size.y/2)));
+    }
+
     public getPixelsX(): string { return this.x.toString() + "px"; }
     public getPixelsY(): string { return this.y.toString() + "px"; }
 }

@@ -7,11 +7,14 @@
   http://www.laskov.co.uk/city/
 */
 import { Point } from "./point";
+import { Rect } from "./rect";
 import { RectList } from "./rect-list";
 
 // Type of building which can be placed in a city
 //
 export class BuildingType {
+    private assetScaleFactor: number = 0.4;
+
     name = "";
     imagePath = new String;
     imageSize = new Point();
@@ -27,11 +30,19 @@ export class BuildingType {
         if (imagePath != "") {
             const img = new Image();
             let sz = this.imageSize;
+            let sf = this.assetScaleFactor;
 
             img.onload = function () {
                 if ((img.width > 0) && (img.height > 0)) {
-                    sz.x = img.width * 0.4;
+                    sz.x = img.width * sf;
                     sz.y = sz.x * (img.height / img.width);
+
+                    if (!occupiedArea.rects.length) {
+                        occupiedArea.rects.push( new Rect(
+                            new Point(0, sz.y * 0.5),
+                            new Point(sz.x, sz.y),
+                        ))
+                    }
                 }
             }
             img.src = imagePath;

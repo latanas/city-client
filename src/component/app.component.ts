@@ -20,28 +20,26 @@ import { City } from 'src/game/city';
 export class AppComponent {
   title = 'City @ Atanas Laskov';
   city = new City();
-  
+
+  currentBuilding = new Building();
   mousePos = new Point();
-  currentBuildingType = new BuildingType();
+  gizmoRadius = 150;
 
   public buildingTypeSelected(bt: BuildingType) {
-    this.currentBuildingType = bt;
+    this.currentBuilding.type = bt;
+    this.currentBuilding.pos = this.getMouseCenteredBuildingPos();
   }
 
   public placeBuilding() {
     //this.hoverOut();
     
-    if( this.currentBuildingType.name == "Demolish")   {
-      this.city.demolish(this.mousePos, 50);
-      this.currentBuildingType = new BuildingType();
+    if( this.currentBuilding.type.name == "Demolish")   {
+      this.city.demolish(this.mousePos, this.gizmoRadius);
+      this.currentBuilding = new Building();
     }
-    else if( this.currentBuildingType.name != "")   {
-      let pos = Point.plus(this.mousePos, new Point(
-        -1*(this.currentBuildingType.imageSize.x/2),
-        -1*(this.currentBuildingType.imageSize.y/2)));
-
-      if( this.city.place( new Building(this.currentBuildingType, pos)) ) {
-        this.currentBuildingType = new BuildingType();
+    else if( this.currentBuilding.type.name != "")   {
+      if( this.city.place( this.currentBuilding ) ) {
+        this.currentBuilding = new Building();
       }
     }
     else {
@@ -50,17 +48,19 @@ export class AppComponent {
   }
 
   onMouseMove(e: MouseEvent) {
-    this.mousePos.x = e.clientX;
-    this.mousePos.y = e.clientY;
+    this.mousePos = new Point(e.clientX, e.clientY);
+    this.currentBuilding.pos = this.getMouseCenteredBuildingPos();
   }
 
-  public getMousePixelsX(): string {
-    return Point.plus(this.mousePos, new Point(-100,-100) ).getPixelsX();
+  getMouseCenteredPosition(size: Point): Point {
+    return Point.getCenteredPosition(this.mousePos, size);
   }
 
-  public getMousePixelsY(): string {
-    return Point.plus(this.mousePos, new Point(-100,-100) ).getPixelsY();
+  getMouseCenteredBuildingPos(): Point {
+    return this.getMouseCenteredPosition(this.currentBuilding.type.imageSize);
   }
 
-  
+  getMouseCenteredGizmoPos(): Point {
+    return this.getMouseCenteredPosition(new Point(this.gizmoRadius*2, this.gizmoRadius*2));
+  }
 }

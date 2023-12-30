@@ -1,20 +1,51 @@
-<div class="city_viewport">
-    <!--city background-->
+<div class="city_background">
 </div>
 
 <main-menu />
 <navigation-menu />
 
 @for (building of city.getBuildingsCopy(); track $index) {
-    <div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()">
-        <img [src]="building.type.imagePath" [width]="building.type.imageSize.x" height="auto" [alt]="building.type.name" [title]="building.type.name" >
-    </div>
+    @if(building.getOccupiedArea().isIntersectingRectList(currentBuilding.getOccupiedArea())) {
+        @for (r of building.getOccupiedArea().rects; track $index) {
+            <div class="building_placement occupied_area"
+                [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
+                [style.width]="r.getSize().getPixelsX()" [style.height]="r.getSize().getPixelsY()">
+            </div>
+        }
+    }
+
+    <img class="building_placement"
+        [src]="building.type.imagePath"
+        [style.left]="building.pos.getPixelsX()" 
+        [style.top]="building.pos.getPixelsY()"
+        [style.width]="building.type.imageSize.getPixelsX()"
+        [style.height]="building.type.imageSize.getPixelsY()"
+        [alt]="building.type.name" [title]="building.type.name" />
 }
 
-@if (currentBuildingType.name != "") { 
-    <div class="building_placement current_building_placement" [style.left]="getMousePixelsX()" [style.top]="getMousePixelsY()">
-        <img [src]="currentBuildingType.imagePath" width="100px" height="auto" (click)="placeBuilding()">
+@if (currentBuilding.type.name != "") {
+    <div class="building_placement gizmo_area"
+        [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
+        [style.top]="getMouseCenteredGizmoPos().getPixelsY()" >
     </div>
+
+    @if(!city.isPlaceable(currentBuilding) && currentBuilding.type.name != "Demolish") {
+        @for (r of currentBuilding.getOccupiedArea().rects; track $index) {
+            <div class="building_placement occupied_area"
+                [class.gizmo_ok]="city.isPlaceable(currentBuilding)"
+                [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
+                [style.width]="r.getSize().getPixelsX()" [style.height]="r.getSize().getPixelsY()">
+            </div>
+        }
+    }
+
+    <img class="building_placement"
+        [src]="currentBuilding.type.imagePath"
+        [style.left]="currentBuilding.pos.getPixelsX()" 
+        [style.top]="currentBuilding.pos.getPixelsY()"
+        [style.width]="currentBuilding.type.imageSize.getPixelsX()"
+        [style.height]="currentBuilding.type.imageSize.getPixelsY()"
+        (click)="placeBuilding()">
 }
 
 <building-palette (buildingTypeSelectedEvent)="buildingTypeSelected($event)" />

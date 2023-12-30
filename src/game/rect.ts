@@ -28,6 +28,10 @@ export class Rect {
         return this.pt[1];
     }
 
+    getSize(): Point {
+        return new Point(this.pt[1].x - this.pt[0].x, this.pt[1].y - this.pt[0].y);
+    }
+
     isIntersectingRect(r: Rect): boolean {
         if (r.pt[0].x > this.pt[1].x) return false;
         if (this.pt[0].x > r.pt[1].x) return false;
