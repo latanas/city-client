@@ -24,8 +24,6 @@
         [alt]="building.type.name" [title]="building.type.name" />
 }
 
-<building-palette (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
-
 @if (currentBuildingTool.type.name != "") {
     @if(currentBuildingTool.type.name != "Demolish") {
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
@@ -51,6 +49,8 @@
         [style.height]="currentBuildingTool.type.imageSize.getPixelsY()"
         (click)="placeBuilding(buildingPalette)">
 }
+
+<building-palette (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
 
 <version-information />
 
