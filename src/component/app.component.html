@@ -3,6 +3,7 @@
 </div>
 
 <main-menu />
+<navigation-menu />
 
 @for (building of city.getBuildingsCopy(); track $index) {
     <div class="building_placement" [style.left]="building.pos.getPixelsX()" [style.top]="building.pos.getPixelsY()">
