@@ -4,6 +4,7 @@ import { Point } from '../game/point';
 import { Rect } from '../game/rect';
 import { RectList } from '../game/rect-list';
 import { BuildingType } from '../game/building-type';
+import { DemolishBuildingType } from '../game/demolish-building-type';
 
 import { BuildingTypes } from 'src/game/abstract-building-type-factory';
 import { BuildingTypeFactoryService } from '../service/building-type-factory.service';
@@ -24,7 +25,7 @@ export class BuildingPaletteComponent {
   appAssetFolder = "asset";
 
   currentBuildingType: BuildingType = new BuildingType();
-  demolishBuildingType = this.createDemolishBuildingType();
+  demolishBuildingType = new DemolishBuildingType(this.appAssetFolder);
   buildingTypePalette: BuildingTypes;
 
   currentSubMenu = "";
@@ -32,15 +33,6 @@ export class BuildingPaletteComponent {
   
   constructor(btfService: BuildingTypeFactoryService) {
     this.buildingTypePalette = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
-  }
-
-  createDemolishBuildingType() {
-    return new BuildingType(
-      "Demolish",
-      this.appAssetFolder + "/Demolish.png",
-      new Point(100, 100),
-      new RectList([new Rect(new Point(0,0), new Point(100,100))])
-    );
   }
 
   public finishToolAction() {

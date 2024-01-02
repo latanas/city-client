@@ -25,14 +25,14 @@
 }
 
 @if (currentBuildingTool.type.name != "") {
-    @if(currentBuildingTool.type.name != "Demolish") {
+    @if(!isToolDemolish()) {
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
         [style.top]="getMouseCenteredGizmoPos().getPixelsY()" >
     </div>
     }
 
-    @if(!city.isPlaceable(currentBuildingTool) && currentBuildingTool.type.name != "Demolish") {
+    @if(!city.isPlaceable(currentBuildingTool) && !isToolDemolish()) {
         @for (r of currentBuildingTool.getOccupiedArea().rects; track $index) {
             <div class="building_placement occupied_area"
                 [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"

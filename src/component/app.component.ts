@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Point } from '../game/point';
 import { BuildingType } from '../game/building-type';
+import { DemolishBuildingType } from '../game/demolish-building-type';
 import { Building } from '../game/building';
 
 import { City } from 'src/game/city';
@@ -34,7 +35,7 @@ export class AppComponent {
   public placeBuilding(buildingPalette: BuildingPaletteComponent) {
     buildingPalette.hoverOut();
     
-    if( this.currentBuildingTool.type.name == "Demolish")   {
+    if( this.isToolDemolish() )   {
       this.city.demolish(this.currentBuildingTool.getOccupiedArea());
       this.finishBuildingToolAction(buildingPalette);
     }
@@ -52,6 +53,10 @@ export class AppComponent {
   finishBuildingToolAction(buildingPalette: BuildingPaletteComponent) {
     this.currentBuildingTool = new Building();
     buildingPalette.finishToolAction();
+  }
+
+  isToolDemolish() {
+    return this.currentBuildingTool.type instanceof DemolishBuildingType;
   }
 
   onMouseMove(e: MouseEvent) {
