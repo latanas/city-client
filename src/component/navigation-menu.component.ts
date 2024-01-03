@@ -1,4 +1,4 @@
-import { Output, EventEmitter, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 @Component({
   selector: 'navigation-menu',
@@ -8,6 +8,7 @@ import { Output, EventEmitter, Component } from '@angular/core';
   styleUrl: './navigation-menu.component.scss'
 })
 export class NavigationMenuComponent {
+  @Input() navigationPanEnabled = false;
   @Output() navigationPanEvent = new EventEmitter();
 
   panButtonClicked() {

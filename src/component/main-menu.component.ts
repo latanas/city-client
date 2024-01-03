@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
 
 @Component({
   selector: 'main-menu',
@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './main-menu.component.scss'
 })
 export class MainMenuComponent {
-
 }

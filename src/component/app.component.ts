@@ -11,11 +11,10 @@ import { Road } from '../game/road';
 import { City } from 'src/game/city';
 
 import { BuildingPaletteComponent } from './building-palette.component';
+import { NavigationMenuComponent } from './navigation-menu.component';
 
 @Component({
   selector: 'app-root',
-  //standalone: true,
-  //imports: [],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host:{
@@ -47,8 +46,7 @@ export class AppComponent {
   }
 
   public buildingToolSelectedEvent(bt: BuildingType) {
-    this.navigationPanEnd();
-
+    this.navigationPanEnabled = false;
     this.currentBuildingTool = bt instanceof RoadBuildingType ? new Road(bt) : new Building(bt);
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
     this.gizmoRadius = Math.max(bt.getSize().x, bt.getSize().y) / 2;
@@ -151,8 +149,9 @@ export class AppComponent {
     this.grid.getOrigin().x -= this.grid.getDimension().x;
   }
 
-  navigationPanCommand() {
+  navigationPanCommand(buildingPalette: BuildingPaletteComponent) {
     this.navigationPanEnabled = !this.navigationPanEnabled;
+    this.finishBuildingToolAction(buildingPalette);
   }
 
   navigationPanStart() {

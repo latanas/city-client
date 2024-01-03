@@ -29,8 +29,8 @@ export class SurrealistBuildingTypeFactory implements AbstractBuildingTypeFactor
                 new ScaledImageBuildingType("Nuclear Plant", assetFolder + "/NuclearPlant.png", new Point(250, 100)),
             ],
             Water: [
-                new ScaledImageBuildingType("Docks", assetFolder + "/Docks.png", new Point(200, 100)),
-                new ScaledImageBuildingType("Dock Administration", assetFolder + "/DocksAdministration.png", new Point(250, 100)),
+                //new ScaledImageBuildingType("Docks", assetFolder + "/Docks.png", new Point(200, 100)),
+                //new ScaledImageBuildingType("Dock Administration", assetFolder + "/DocksAdministration.png", new Point(250, 100)),
                 new ScaledImageBuildingType("Water Tower", assetFolder + "/WaterTower01.png", new Point(50, 100)),
                 new ScaledImageBuildingType("Large Water Tower", assetFolder + "/WaterTower02.png", new Point(80, 100)),
             ],

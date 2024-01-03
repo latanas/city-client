@@ -101,7 +101,7 @@
 
 <!--<main-menu />-->
 <!--<undo-redo-menu />-->
-<navigation-menu (navigationPanEvent)="navigationPanCommand()" />
+<navigation-menu [navigationPanEnabled]="navigationPanEnabled" (navigationPanEvent)="navigationPanCommand(buildingPalette)" />
 <building-palette [buildingTileSize]="this.grid.getDimension()" (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
 <version-information />
 

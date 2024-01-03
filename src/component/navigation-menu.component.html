@@ -1,6 +1,8 @@
-<div class="city_viewport_navigation">
+<div class="navigation_menu" [class.navigation_command_enabled]="navigationPanEnabled">
     <span (click)="panButtonClicked()">Pan</span>
     <!--<span>Zoom +</span>
     <span>Zoom -</span>
     <span>Help</span>-->
 </div>
+
+{{navigationPanEnabled}}

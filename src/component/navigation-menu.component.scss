@@ -1,5 +1,5 @@
 
-.city_viewport_navigation {
+.navigation_menu {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -17,7 +17,7 @@
     border-radius: 20px;
 }
 
-.city_viewport_navigation span {
+.navigation_menu span {
     display: inline-block;
     margin: 5px;
     padding: 5px;
@@ -27,6 +27,10 @@
     cursor: pointer;
 }
 
-.city_viewport_navigation span:hover {
+.navigation_menu span:hover {
     background-color: #6957aa;
+}
+
+.navigation_command_enabled {
+    background-color: red;
 }
