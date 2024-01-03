@@ -19,9 +19,24 @@ export class Grid {
   private origin: Point;
   private dimension: Point;
 
-  constructor(origin: Point, dimension: Point) {
+  public readonly maxCellCount: Point;
+
+  constructor(origin: Point, dimension: Point, maxCellCount: Point) {
     this.origin = origin;
     this.dimension = dimension;
+    this.maxCellCount = maxCellCount;
+  }
+  
+  getOrigin(): Point {
+    return this.origin;
+  }
+
+  getDimension(): Point {
+    return this.dimension;
+  }
+
+  getMaxSize(): Point {
+    return new Point(this.maxCellCount.x*this.dimension.x, this.maxCellCount.y*this.dimension.y);
   }
 
   // Snap vector coordinates to the grid
@@ -34,14 +49,6 @@ export class Grid {
         return Point.plus( pos, new Point(this.dimension.x*0.5, this.dimension.y*0.5) );
     }
     return pos;
-  }
-
-  getOrigin(): Point {
-    return this.origin;
-  }
-
-  getDimension(): Point {
-    return this.dimension;
   }
 
   // Convert grid index to world coordinates

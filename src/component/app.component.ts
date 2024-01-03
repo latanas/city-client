@@ -29,14 +29,26 @@ import { BuildingPaletteComponent } from './building-palette.component';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  grid = new Grid(new Point(), new Point(50, 50));
+  grid = new Grid(new Point(0, 0), new Point(50, 50), new Point(100, 100));
   city = new City(this.grid);
 
   currentBuildingTool = new Building();
-  mousePos = new Point();
+  mouseScreenPos = new Point();
+  mouseMapPos = new Point();
   gizmoRadius = this.grid.getDimension().x/2.0;
 
+  navigationPanEnabled = false;
+  navigationPanActive = false;
+  navigationPanPivot = new Point();
+
+  constructor() {
+    this.grid.getOrigin().x = this.getMinOrigin().x/2;
+    this.grid.getOrigin().y = this.getMinOrigin().y/2;
+  }
+
   public buildingToolSelectedEvent(bt: BuildingType) {
+    this.navigationPanEnd();
+
     this.currentBuildingTool = bt instanceof RoadBuildingType ? new Road(bt) : new Building(bt);
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
     this.gizmoRadius = Math.max(bt.getSize().x, bt.getSize().y) / 2;
@@ -83,12 +95,21 @@ export class AppComponent {
   }
 
   onMouseMove(e: MouseEvent) {
-    this.mousePos = new Point(e.clientX - this.grid.getOrigin().x, e.clientY - this.grid.getOrigin().y);
+    this.mouseScreenPos = new Point(e.clientX, e.clientY);
+    this.mouseMapPos = new Point(this.mouseScreenPos.x - this.grid.getOrigin().x, this.mouseScreenPos.y - this.grid.getOrigin().y);
+
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
+
+    if ( this.navigationPanActive && (Point.minus(this.mouseScreenPos, this.navigationPanPivot).distance() > this.grid.getDimension().x*0.2) ) {
+      this.grid.getOrigin().x += this.mouseScreenPos.x - this.navigationPanPivot.x;
+      this.grid.getOrigin().y += this.mouseScreenPos.y - this.navigationPanPivot.y;
+
+      this.navigationPanPivot = this.mouseScreenPos;
+    }
   }
 
   getMouseCenteredPosition(size: Point): Point {
-    return Point.getCenteredPosition(this.mousePos, size);
+    return Point.getCenteredPosition(this.mouseMapPos, size);
   }
 
   getMouseCenteredBuildingPos(): Point {
@@ -125,5 +146,33 @@ export class AppComponent {
 
   onRight(e: KeyboardEvent) {
     this.grid.getOrigin().x -= this.grid.getDimension().x;
+  }
+
+  navigationPanCommand() {
+    this.navigationPanEnabled = !this.navigationPanEnabled;
+  }
+
+  navigationPanStart() {
+    if ( this.navigationPanEnabled ) {
+      this.navigationPanActive = true;
+      this.navigationPanPivot = this.mouseScreenPos;
+    }
+  }
+
+  navigationPanEnd() {
+    this.navigationPanActive = false;
+    this.navigationPanPivot = new Point();
+  }
+
+  getWindowSize() {
+    return new Point(window.innerWidth, window.innerHeight);
+  }
+
+  getMinOrigin(): Point {
+    return Point.minus(this.getWindowSize(), this.grid.getMaxSize());
+  }
+
+  getMaxOrigin(): Point {
+    return Point.minus(this.grid.getMaxSize(), this.getWindowSize());
   }
 }
