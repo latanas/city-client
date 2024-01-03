@@ -12,6 +12,7 @@ import { RectList } from "./rect-list";
 
 import { Building } from "./building";
 import { Road } from "./road";
+import { RoadBuildingType } from "./road-building-type";
 
 
 
@@ -42,20 +43,22 @@ export class City {
         }
       }
     }
-
-    //console.log(r);
     return r;
   }
 
-  //getRoadMatrixCopy(): Road[][] {
-  //  return this.roads.slice();
-  //}
+  getRoadSpriteIndex(road: Road): number {
+    let gridIndex = this.grid.getGridIndex(road.getPos());
+    //return gridIndex.x;
 
-  private _getRoadMatrixSize(): Point {
-    if (this.roads.length == 0) {
-      return new Point(0, 0);
-    }
-    return new Point(this.roads.length, this.roads[0].length);
+    let context = this._getRoadContextMatrix(gridIndex.x, gridIndex.y);
+    return RoadBuildingType.getSpriteIndexForContext(context);
+  }
+
+  getRoadSpritePosition(road: Road) {
+    //let fraction = 100.0 / (RoadBuildingType.RoadSpriteCount);
+    //return this.getRoadSpriteIndex(road) * fraction;
+
+    return -1 * this.getRoadSpriteIndex(road) * this.grid.getDimension().x;
   }
 
   // Check if a building's location overlaps already constructed area of the city
@@ -97,16 +100,11 @@ export class City {
   }
 
   private _placeRoad(road: Road) {
-    let centerPt = road.getPos(); //Point.plus(road.getPos(), Point.scale(this.grid.getDimension(), 0.5));
-    
-    let index = this.grid.getGridIndex(centerPt);
+    //let centerPt = road.getPos(); //Point.plus(road.getPos(), Point.scale(this.grid.getDimension(), 0.5));
+    let index = this.grid.getGridIndex(road.getPos());
     let roadNetworkSize = this._getRoadMatrixSize();
 
-    let isWithinBounds = (x: number, y: number) => {
-      return (x < roadNetworkSize.x) && (y < roadNetworkSize.y);
-    }
-
-    if (!isWithinBounds(index.x, index.y)) {
+    if (!this._isWithinBounds(index.x, index.y)) {
       let newRoads: Road[][] = [];
 
       let newSizeX = Math.max(index.x + 1, roadNetworkSize.x);
@@ -118,7 +116,7 @@ export class City {
           newRoads[x] = [];
 
           for(var y: number = 0; y < newSizeY; y++) {
-            if (isWithinBounds(x,y)) {
+            if (this._isWithinBounds(x,y)) {
               newRoads[x][y] = this.roads[x][y];
             }
             else {
@@ -152,5 +150,36 @@ export class City {
     for (var id = 0; id < this.buildings.length; id++) {
       action(this.buildings[id], id);
     }
+  }
+
+  private _getRoadMatrixSize = () => {
+    if (this.roads.length == 0) {
+      return new Point(0, 0);
+    }
+    return new Point(this.roads.length, this.roads[0].length);
+  }
+
+  private _isWithinBounds = (x: number, y: number) => {
+    if ( (x < 0) || (y < 0)) return false;
+    let sz: Point = this._getRoadMatrixSize();
+    return (x < sz.x) && (y < sz.y);
+  }
+
+  private _getRoadContextMatrix(rx: number, ry: number): boolean[][] {
+    let context: boolean[][] = [];
+
+    for (let i: number = 0; i < 3; i++) {
+      context[i] = [false, false, false];
+
+      for (let j: number = 0; j < 3; j++) {
+        let x = rx - 1 + i;
+        let y = ry - 1 + j;
+
+        if (this._isWithinBounds(x,y)) {
+          context[i][j] = !this.roads[x][y].isEmptyType();
+        }
+      }
+    }
+    return context;
   }
 }
