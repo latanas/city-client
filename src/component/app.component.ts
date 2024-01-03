@@ -30,7 +30,7 @@ export class AppComponent {
 
   currentBuildingTool = new Building();
   mousePos = new Point();
-  gizmoRadius = 150;
+  gizmoRadius = this.grid.getDimension().x*1.5;
 
   public buildingToolSelectedEvent(bt: BuildingType) {
     this.currentBuildingTool = bt instanceof RoadBuildingType ? new Road(bt) : new Building(bt);
@@ -94,6 +94,11 @@ export class AppComponent {
   }
 
   getMouseCenteredGizmoPos(): Point {
-    return this.getMouseCenteredPosition(new Point(this.gizmoRadius*2, this.gizmoRadius*2));
+    let pos = this.getMouseCenteredPosition(new Point(this.gizmoRadius*2, this.gizmoRadius*2));
+    
+    if (this.isToolRoad()) {
+      return this.grid.snap(pos);
+    }
+    return pos;
   }
 }

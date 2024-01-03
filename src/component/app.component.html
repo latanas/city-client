@@ -38,7 +38,15 @@
 }
 
 @if (isToolRoad()) {
-    <div class="building_placement" style="background: rgb(0,0,0);"
+    <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
+        [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
+        [style.top]="getMouseCenteredGizmoPos().getPixelsY()"
+        [style.width]="grid.getDimension().x"
+        [style.height]="grid.getDimension().y"
+        >
+    </div>
+
+    <div class="building_placement"
         [style.background-image]="currentBuildingTool.getType().getImageUrl()"
         [style.left]="currentBuildingTool.getPos().getPixelsX()" 
         [style.top]="currentBuildingTool.getPos().getPixelsY()"
