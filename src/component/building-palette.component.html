@@ -1,5 +1,11 @@
 
-    
+
+<div class="building_sub_palette" (click)="grabBuilding(demolishBuildingType)">
+    <div class="building_sub_palette_00" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
+        <p><img [src]="demolishBuildingType.getImagePath()" width="50px" height="auto"></p>
+    </div>
+</div>
+
 @if (currentSubMenu == "Housing") {
     <div class="building_sub_palette">
         @for (buildingType of buildingTypePalette["Housing"]; track $index) {
@@ -79,7 +85,7 @@
         }
     </div>
 }
-    
+
 <div class="building_palette">
         <div class="building_palette_01" (click)="showSubMenu('Housing')"><p>Housing</p></div>
         <div class="building_palette_02" (click)="showSubMenu('Power')"><p>Power</p></div>
@@ -90,8 +96,8 @@
         <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
         <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
     
-        <p class="building_palette_bulldoze" (click)="grabBuilding(demolishBuildingType)">
-            {{currentBuildingType.getName() != "" ? 'X' : 'Bulldoze'}}
+        <p class="building_palette_road" (click)="grabBuilding(roadBuildingType)" (mouseenter)="hoverBuilding(roadBuildingType)" (mouseleave)="hoverOut()">
+            {{currentBuildingType.getName() != "" ? 'X' : 'Add Road&hellip;'}}
         </p>
 </div>
     

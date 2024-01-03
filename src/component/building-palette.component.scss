@@ -103,7 +103,7 @@
     transform: rotate(-315deg);
 }
 
-.building_palette_bulldoze {
+.building_palette_road {
     position: absolute;
 
     top: 50%;
@@ -127,7 +127,7 @@
     cursor: pointer;
 }
 
-.building_palette_bulldoze:hover {
+.building_palette_road:hover {
     background-color: #6957aa;
 }
 
@@ -186,6 +186,12 @@
     background-color: #6957aa;
 }
 
+.building_sub_palette_00 {
+    transform: rotate(220deg);
+}
+.building_sub_palette_00 p {
+    transform: rotate(-220deg);
+}
 
 .building_sub_palette_01 {
     transform: rotate(250deg);

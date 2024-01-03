@@ -4,6 +4,7 @@ import { Point } from '../game/point';
 import { Rect } from '../game/rect';
 import { RectList } from '../game/rect-list';
 import { BuildingType } from '../game/building-type';
+import { RoadBuildingType } from '../game/road-building-type';
 import { DemolishBuildingType } from '../game/demolish-building-type';
 
 import { BuildingTypes } from 'src/game/abstract-building-type-factory';
@@ -25,7 +26,9 @@ export class BuildingPaletteComponent {
   appAssetFolder = "asset";
 
   currentBuildingType: BuildingType = new BuildingType();
+  roadBuildingType = new RoadBuildingType(this.appAssetFolder);
   demolishBuildingType = new DemolishBuildingType(this.appAssetFolder);
+
   buildingTypePalette: BuildingTypes;
 
   currentSubMenu = "";
