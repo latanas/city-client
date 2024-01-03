@@ -28,8 +28,8 @@ export class AppComponent {
   gizmoRadius = 150;
 
   public buildingToolSelectedEvent(bt: BuildingType) {
-    this.currentBuildingTool.type = bt;
-    this.currentBuildingTool.pos = this.getMouseCenteredBuildingPos();
+    this.currentBuildingTool = new Building(bt);
+    this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
   }
 
   public placeBuilding(buildingPalette: BuildingPaletteComponent) {
@@ -39,7 +39,7 @@ export class AppComponent {
       this.city.demolish(this.currentBuildingTool.getOccupiedArea());
       this.finishBuildingToolAction(buildingPalette);
     }
-    else if( this.currentBuildingTool.type.name != "")   {
+    else if( this.currentBuildingTool.getType().getName() != "")   {
       if( this.city.place( this.currentBuildingTool ) ) {
         this.finishBuildingToolAction(buildingPalette);
       }
@@ -56,12 +56,12 @@ export class AppComponent {
   }
 
   isToolDemolish() {
-    return this.currentBuildingTool.type instanceof DemolishBuildingType;
+    return this.currentBuildingTool.getType() instanceof DemolishBuildingType;
   }
 
   onMouseMove(e: MouseEvent) {
     this.mousePos = new Point(e.clientX, e.clientY);
-    this.currentBuildingTool.pos = this.getMouseCenteredBuildingPos();
+    this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
   }
 
   getMouseCenteredPosition(size: Point): Point {
@@ -69,7 +69,7 @@ export class AppComponent {
   }
 
   getMouseCenteredBuildingPos(): Point {
-    return this.getMouseCenteredPosition(this.currentBuildingTool.type.imageSize);
+    return this.getMouseCenteredPosition(this.currentBuildingTool.getType().getImageSize());
   }
 
   getMouseCenteredGizmoPos(): Point {

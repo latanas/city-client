@@ -15,10 +15,10 @@ import { RectList } from "./rect-list";
 export class BuildingType {
     private assetScaleFactor: number = 0.4;
 
-    name = "";
-    imagePath = new String;
-    imageSize = new Point();
-    occupiedArea = new RectList();
+    private name = "";
+    private imagePath = "";
+    private imageSize = new Point();
+    private occupiedArea = new RectList();
     
     constructor(name: string = "", imagePath: string = "", imageSize: Point = new Point(), occupiedArea: RectList = new RectList()) {
         this.name = name;
@@ -47,5 +47,21 @@ export class BuildingType {
             }
             img.src = imagePath;
         }
+    }
+
+    getName(): string {
+        return this.name;
+    }
+
+    getImagePath(): string {
+        return this.imagePath;
+    }
+
+    getImageSize(): Point {
+        return this.imageSize;
+    }
+
+    getOccuptiedArea(): RectList {
+        return this.occupiedArea;
     }
 }

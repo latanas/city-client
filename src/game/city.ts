@@ -6,16 +6,22 @@
 
   http://www.laskov.co.uk/city/
 */
-import { Building } from "./building";
 import { Point } from "./point";
 import { Grid } from "./grid";
 import { RectList } from "./rect-list";
+
+import { Building } from "./building";
+import { Road } from "./road";
+
+
 
 // Container for all the buildings in the city
 // This class keeps them sorted in order of the Y coordinate, so  buildings that are "in front" will appear near the end of the list
 //
 export class City {
   private buildings: Building[] = [];
+  private roads: Road[][] = [];
+  
   private grid: Grid = new Grid(new Point(100, 100));
 
   constructor() {
@@ -43,10 +49,10 @@ export class City {
     if (!this.isPlaceable(b)) {
       return false;
     }
-    let bottomY = b.pos.y + b.type.imageSize.y;
+    let bottomY = b.getPos().y + b.getType().getImageSize().y;
     let i = 0;
 
-    while( (i < this.buildings.length) && (this.buildings[i].pos.y + this.buildings[i].type.imageSize.y < bottomY) ) i++;
+    while( (i < this.buildings.length) && (this.buildings[i].getPos().y + this.buildings[i].getType().getImageSize().y < bottomY) ) i++;
 
     if (i < this.buildings.length) {
       this.buildings.splice(i, 0, b);

@@ -59,14 +59,14 @@ export class BuildingPaletteComponent {
   }
   
   public hoverBuilding(buildingType: BuildingType) {
-    this.hoverBuildingName = buildingType.name;
+    this.hoverBuildingName = buildingType.getName();
   }
 
   public grabBuilding(buildingType: BuildingType) {
     this.hideSubMenu();
     this.hoverOut();
 
-    if ((this.currentBuildingType.name != "") && (buildingType == this.demolishBuildingType)) {
+    if ((this.currentBuildingType.getName() != "") && (buildingType == this.demolishBuildingType)) {
       this.currentBuildingType = new BuildingType();
     }
     else {

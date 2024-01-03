@@ -13,15 +13,27 @@ import { RectList } from "./rect-list";
 // Single instance of a building placed in the city
 //
 export class Building {
-    type: BuildingType;
-    pos: Point;
+    private type: BuildingType;
+    private pos: Point;
 
     constructor(type: BuildingType = new BuildingType(), pos: Point = new Point()) {
         this.type = type;
         this.pos = pos;
     }
 
+    getType(): BuildingType {
+      return this.type;
+    }
+
+    getPos(): Point {
+      return this.pos;
+    }
+
+    setPos(p: Point) {
+      this.pos = p;
+    }
+
     getOccupiedArea(): RectList {
-      return RectList.translate(this.type.occupiedArea, this.pos);
+      return RectList.translate(this.type.getOccuptiedArea(), this.pos);
     }
 }

@@ -16,15 +16,15 @@
     }
 
     <img class="building_placement"
-        [src]="building.type.imagePath"
-        [style.left]="building.pos.getPixelsX()" 
-        [style.top]="building.pos.getPixelsY()"
-        [style.width]="building.type.imageSize.getPixelsX()"
-        [style.height]="building.type.imageSize.getPixelsY()"
-        [alt]="building.type.name" [title]="building.type.name" />
+        [src]="building.getType().getImagePath()"
+        [style.left]="building.getPos().getPixelsX()" 
+        [style.top]="building.getPos().getPixelsY()"
+        [style.width]="building.getType().getImageSize().getPixelsX()"
+        [style.height]="building.getType().getImageSize().getPixelsY()"
+        [alt]="building.getType().getName()" [title]="building.getType().getName()" />
 }
 
-@if (currentBuildingTool.type.name != "") {
+@if (currentBuildingTool.getType().getName() != "") {
     @if(!isToolDemolish()) {
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
@@ -42,11 +42,11 @@
     }
 
     <img class="building_placement"
-        [src]="currentBuildingTool.type.imagePath"
-        [style.left]="currentBuildingTool.pos.getPixelsX()" 
-        [style.top]="currentBuildingTool.pos.getPixelsY()"
-        [style.width]="currentBuildingTool.type.imageSize.getPixelsX()"
-        [style.height]="currentBuildingTool.type.imageSize.getPixelsY()"
+        [src]="currentBuildingTool.getType().getImagePath()"
+        [style.left]="currentBuildingTool.getPos().getPixelsX()" 
+        [style.top]="currentBuildingTool.getPos().getPixelsY()"
+        [style.width]="currentBuildingTool.getType().getImageSize().getPixelsX()"
+        [style.height]="currentBuildingTool.getType().getImageSize().getPixelsY()"
         (click)="placeBuilding(buildingPalette)">
 }
 
