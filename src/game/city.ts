@@ -19,16 +19,43 @@ import { Road } from "./road";
 // This class keeps them sorted in order of the Y coordinate, so  buildings that are "in front" will appear near the end of the list
 //
 export class City {
+  private grid;
+
   private buildings: Building[] = [];
   private roads: Road[][] = [];
-  
-  private grid: Grid = new Grid(new Point(100, 100));
 
-  constructor() {
+  constructor(grid: Grid) {
+    this.grid = grid;
   }
 
   getBuildingsCopy(): Building[] {
     return this.buildings.slice();
+  }
+
+  getRoadsCopy(): Road[] {
+    let r: Road[] = []
+
+    for (let x: number = 0; x < this.roads.length; x++) {
+      for (let y: number = 0; y < this.roads[x].length; y++) {
+        if ( !this.roads[x][y].isEmptyType() ) {
+          r.push(this.roads[x][y]);
+        }
+      }
+    }
+
+    //console.log(r);
+    return r;
+  }
+
+  //getRoadMatrixCopy(): Road[][] {
+  //  return this.roads.slice();
+  //}
+
+  private _getRoadMatrixSize(): Point {
+    if (this.roads.length == 0) {
+      return new Point(0, 0);
+    }
+    return new Point(this.roads.length, this.roads[0].length);
   }
 
   // Check if a building's location overlaps already constructed area of the city
@@ -46,9 +73,15 @@ export class City {
   // The city class can reject this if there are already other buildings at the building's location.
   //
   place(b: Building): boolean {
+    if(b instanceof Road) {
+      this._placeRoad(b);
+      return true;
+    }
+
     if (!this.isPlaceable(b)) {
       return false;
     }
+
     let bottomY = b.getPos().y + b.getType().getImageSize().y;
     let i = 0;
 
@@ -61,6 +94,43 @@ export class City {
       this.buildings.push(b);
     }
     return true;
+  }
+
+  private _placeRoad(road: Road) {
+    let centerPt = road.getPos(); //Point.plus(road.getPos(), Point.scale(this.grid.getDimension(), 0.5));
+    
+    let index = this.grid.getGridIndex(centerPt);
+    let roadNetworkSize = this._getRoadMatrixSize();
+
+    let isWithinBounds = (x: number, y: number) => {
+      return (x < roadNetworkSize.x) && (y < roadNetworkSize.y);
+    }
+
+    if (!isWithinBounds(index.x, index.y)) {
+      let newRoads: Road[][] = [];
+
+      let newSizeX = Math.max(index.x + 1, roadNetworkSize.x);
+      let newSizeY = Math.max(index.y + 1, roadNetworkSize.y);
+
+      console.log("Resizing road network to " + newSizeX + "x" + newSizeY);
+
+        for(var x: number = 0; x < newSizeX; x++) {
+          newRoads[x] = [];
+
+          for(var y: number = 0; y < newSizeY; y++) {
+            if (isWithinBounds(x,y)) {
+              newRoads[x][y] = this.roads[x][y];
+            }
+            else {
+              newRoads[x][y] = new Road();
+            }
+          }
+      }
+      this.roads = newRoads;
+    }
+
+    this.roads[index.x][index.y] = road;
+    console.log(this.roads[index.x][index.y].getPos());
   }
 
   // Demolish an area of the city

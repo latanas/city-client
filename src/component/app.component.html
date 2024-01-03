@@ -5,6 +5,19 @@
 <undo-redo-menu />
 <navigation-menu />
 
+@for (road of city.getRoadsCopy(); track $index) {
+    <div class="building_placement"
+        [style.background-image]="road.getType().getImageUrl()"
+        [style.left]="road.getPos().getPixelsX()"
+        [style.top]="road.getPos().getPixelsY()"
+        [style.width]="grid.getDimension().x"
+        [style.height]="grid.getDimension().y"
+        [style.background-size]="'auto ' + grid.getDimension().getPixelsY()"
+        [style.backroundPositionTopLeft]="0"
+        alt="Road" title="Road">
+    </div>
+}
+
 @for (building of city.getBuildingsCopy(); track $index) {
     @if(building.getOccupiedArea().isIntersectingRectList( currentBuildingTool.getOccupiedArea() )) {
         @for (r of building.getOccupiedArea().rects; track $index) {
@@ -24,7 +37,19 @@
         [alt]="building.getType().getName()" [title]="building.getType().getName()" />
 }
 
-@if (currentBuildingTool.getType().getName() != "") {
+@if (isToolRoad()) {
+    <div class="building_placement" style="background: rgb(0,0,0);"
+        [style.background-image]="currentBuildingTool.getType().getImageUrl()"
+        [style.left]="currentBuildingTool.getPos().getPixelsX()" 
+        [style.top]="currentBuildingTool.getPos().getPixelsY()"
+        [style.width]="grid.getDimension().x"
+        [style.height]="grid.getDimension().y"
+        [style.background-size]="'auto ' + grid.getDimension().getPixelsY()"
+        [style.backroundPositionTopLeft]="0"
+        (click)="placeBuilding(buildingPalette)">
+    </div>
+}
+@else if (!currentBuildingTool.isEmptyType()) {
     @if(!isToolDemolish()) {
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"

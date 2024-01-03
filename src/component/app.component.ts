@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 
 import { Point } from '../game/point';
+import { Grid } from '../game/grid';
 import { BuildingType } from '../game/building-type';
 import { DemolishBuildingType } from '../game/demolish-building-type';
+import { RoadBuildingType } from '../game/road-building-type';
 import { Building } from '../game/building';
+import { Road } from '../game/road';
 
 import { City } from 'src/game/city';
 
@@ -22,26 +25,37 @@ import { BuildingPaletteComponent } from './building-palette.component';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  city = new City();
+  grid = new Grid(new Point(100, 100));
+  city = new City(this.grid);
+
   currentBuildingTool = new Building();
   mousePos = new Point();
   gizmoRadius = 150;
 
   public buildingToolSelectedEvent(bt: BuildingType) {
-    this.currentBuildingTool = new Building(bt);
+    this.currentBuildingTool = bt instanceof RoadBuildingType ? new Road(bt) : new Building(bt);
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
   }
 
   public placeBuilding(buildingPalette: BuildingPaletteComponent) {
     buildingPalette.hoverOut();
     
-    if( this.isToolDemolish() )   {
+    if( this.isToolDemolish() ) {
       this.city.demolish(this.currentBuildingTool.getOccupiedArea());
       this.finishBuildingToolAction(buildingPalette);
     }
-    else if( this.currentBuildingTool.getType().getName() != "")   {
+    else if( !this.currentBuildingTool.isEmptyType())   {
       if( this.city.place( this.currentBuildingTool ) ) {
-        this.finishBuildingToolAction(buildingPalette);
+
+        // If this is the road tool..
+        if ( this.isToolRoad() ) {
+          // Automatically pick up a new piece of road
+          this.currentBuildingTool = new Road( this.currentBuildingTool.getType() );
+        }
+        else {
+          // Otherwise building is placed, finish with the tool
+          this.finishBuildingToolAction(buildingPalette);
+        }
       }
     }
     else {
@@ -53,6 +67,10 @@ export class AppComponent {
   finishBuildingToolAction(buildingPalette: BuildingPaletteComponent) {
     this.currentBuildingTool = new Building();
     buildingPalette.finishToolAction();
+  }
+
+  isToolRoad() {
+    return this.currentBuildingTool.getType() instanceof RoadBuildingType;
   }
 
   isToolDemolish() {
@@ -69,6 +87,9 @@ export class AppComponent {
   }
 
   getMouseCenteredBuildingPos(): Point {
+    if (this.isToolRoad()) {
+      return this.grid.snap(this.getMouseCenteredPosition(this.grid.getDimension()));
+    }
     return this.getMouseCenteredPosition(this.currentBuildingTool.getType().getImageSize());
   }
 

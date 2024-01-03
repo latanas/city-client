@@ -57,6 +57,11 @@ export class BuildingType {
         return this.imagePath;
     }
 
+    getImageUrl(): string {
+        return "url(" + this.imagePath + ")";
+    }
+
+
     getImageSize(): Point {
         return this.imageSize;
     }
