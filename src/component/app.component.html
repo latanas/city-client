@@ -1,9 +1,7 @@
-<div class="city_background" [style.background-size]="grid.getDimension().getPixelsX() + ' ' + grid.getDimension().getPixelsY()">
-</div>
-
-<main-menu />
-<undo-redo-menu />
-<navigation-menu />
+<div class="city_background" 
+    [style.background-size]="grid.getDimension().getPixelsX() + ' ' + grid.getDimension().getPixelsY()"
+    [style.left]="grid.getOrigin().getPixelsX()"
+    [style.top]="grid.getOrigin().getPixelsY()">
 
 @for (road of city.getRoadsCopy(); track $index) {
     @if( !isToolRoad() ) {
@@ -96,8 +94,12 @@
         (click)="placeBuilding(buildingPalette)">
 }
 
-<building-palette [buildingTileSize]="this.grid.getDimension()" (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
+</div>
 
+<main-menu />
+<undo-redo-menu />
+<navigation-menu />
+<building-palette [buildingTileSize]="this.grid.getDimension()" (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
 <version-information />
 
 <router-outlet></router-outlet>

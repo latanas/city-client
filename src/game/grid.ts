@@ -16,9 +16,11 @@ export enum GridSnapType {
 // 2D grid with ability to snap points to the specified grid size
 //
 export class Grid {
+  private origin: Point;
   private dimension: Point;
 
-  constructor(dimension: Point) {
+  constructor(origin: Point, dimension: Point) {
+    this.origin = origin;
     this.dimension = dimension;
   }
 
@@ -34,8 +36,10 @@ export class Grid {
     return pos;
   }
 
-  // Get the grid dimension
-  //
+  getOrigin(): Point {
+    return this.origin;
+  }
+
   getDimension(): Point {
     return this.dimension;
   }

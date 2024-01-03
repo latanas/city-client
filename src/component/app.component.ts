@@ -19,13 +19,17 @@ import { BuildingPaletteComponent } from './building-palette.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   host:{
-    "(mousemove)": "onMouseMove($event)"
+    "(mousemove)": "onMouseMove($event)",
+    "(document:keyup.arrowup)": "onUp($event)",
+    "(document:keyup.arrowdown)": "onDown($event)",
+    "(document:keyup.arrowleft)": "onLeft($event)",
+    "(document:keyup.arrowright)": "onRight($event)"
   }
 })
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  grid = new Grid(new Point(50, 50));
+  grid = new Grid(new Point(), new Point(50, 50));
   city = new City(this.grid);
 
   currentBuildingTool = new Building();
@@ -79,7 +83,7 @@ export class AppComponent {
   }
 
   onMouseMove(e: MouseEvent) {
-    this.mousePos = new Point(e.clientX, e.clientY);
+    this.mousePos = new Point(e.clientX - this.grid.getOrigin().x, e.clientY - this.grid.getOrigin().y);
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
   }
 
@@ -105,5 +109,21 @@ export class AppComponent {
 
   getGizmoSizePx() {
     return (this.gizmoRadius * 2) + "px";
+  }
+
+  onUp(e: KeyboardEvent) {
+    this.grid.getOrigin().y += this.grid.getDimension().y;
+  }
+
+  onDown(e: KeyboardEvent) {
+    this.grid.getOrigin().y -= this.grid.getDimension().y;
+  }
+
+  onLeft(e: KeyboardEvent) {
+    this.grid.getOrigin().x += this.grid.getDimension().x;
+  }
+
+  onRight(e: KeyboardEvent) {
+    this.grid.getOrigin().x -= this.grid.getDimension().x;
   }
 }
