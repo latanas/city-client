@@ -32,14 +32,25 @@ body {
 
 .top_menu span {
     display: inline-block;
-    margin: 5px;
-    padding: 5px;
 
     border-radius: 10px;
-
     cursor: pointer;
 }
 
 .top_menu span:hover {
     background-color: #6957aa;
+}
+
+.icon_sprite {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    background-image: url(asset/IconSprites.png);
+    background-repeat: no-repeat;
+    background-size: auto 30px;
+}
+
+.icon_sprite_pan {
+    background-position: 0px 0px;
 }
