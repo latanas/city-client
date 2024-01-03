@@ -64,17 +64,26 @@ export class City {
   // Check if a building's location overlaps already constructed area of the city
   //
   isPlaceable(newBuilding: Building) {
+    // Check buildings
     for (let cityBuilding of this.buildings) {
       if( newBuilding.getOccupiedArea().isIntersectingRectList(cityBuilding.getOccupiedArea()) ) {
         return false;
       }
     }
     
+    // That's enough for road types
+    // Don't check if roads intersect with other roads
+    if (newBuilding instanceof Road ) {
+      return true;
+    }
+
+    // Check roads
     for (let cityRoad of this.getRoadsCopy()) {
       if( newBuilding.getOccupiedArea().isIntersectingRectList(cityRoad.getOccupiedArea()) ) {
         return false;
       }
     }
+
     return true;
   }
 
@@ -91,10 +100,10 @@ export class City {
       return false;
     }
 
-    let bottomY = b.getPos().y + b.getType().getImageSize().y;
+    let bottomY = b.getPos().y + b.getType().getSize().y;
     let i = 0;
 
-    while( (i < this.buildings.length) && (this.buildings[i].getPos().y + this.buildings[i].getType().getImageSize().y < bottomY) ) i++;
+    while( (i < this.buildings.length) && (this.buildings[i].getPos().y + this.buildings[i].getType().getSize().y < bottomY) ) i++;
 
     if (i < this.buildings.length) {
       this.buildings.splice(i, 0, b);

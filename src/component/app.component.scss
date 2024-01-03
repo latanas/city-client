@@ -7,7 +7,6 @@
     width: 100%;
     height: 100%;
 
-    background-size: 100px 100px;
     background-image:
         linear-gradient(to right, grey 1px, transparent 1px),
         linear-gradient(to bottom, grey 1px, transparent 1px);
@@ -32,7 +31,6 @@
 }
 
 .gizmo_area {
-    padding: 100px;
     border-radius: 150px;
 
     border: 1px dashed rgb(0, 0, 255);

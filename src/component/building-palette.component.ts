@@ -1,8 +1,6 @@
 import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 import { Point } from '../game/point';
-import { Rect } from '../game/rect';
-import { RectList } from '../game/rect-list';
 import { BuildingType } from '../game/building-type';
 import { RoadBuildingType } from '../game/road-building-type';
 import { DemolishBuildingType } from '../game/demolish-building-type';
@@ -21,21 +19,33 @@ import { BuildingTypeFactoryService } from '../service/building-type-factory.ser
   }
 })
 export class BuildingPaletteComponent {
+  @Input({required: true}) buildingTileSize!: Point;
   @Output() buildingToolSelectedEvent = new EventEmitter<BuildingType>();
 
   private readonly appAssetFolder = "asset";
 
-  currentBuildingType: BuildingType = new BuildingType();
-  roadBuildingType = new RoadBuildingType(this.appAssetFolder);
-  demolishBuildingType = new DemolishBuildingType(this.appAssetFolder);
+  currentBuildingType: BuildingType;
+  roadBuildingType: RoadBuildingType;
+  demolishBuildingType: BuildingType;
 
   buildingTypePalette: BuildingTypes;
 
-  currentSubMenu = "";
-  hoverBuildingName = "";
+  currentSubMenu: string;
+  hoverBuildingName: string;
   
   constructor(btfService: BuildingTypeFactoryService) {
+    this.currentBuildingType = new BuildingType();
+    this.demolishBuildingType = new DemolishBuildingType(this.appAssetFolder);
+    this.roadBuildingType = new RoadBuildingType(this.appAssetFolder, new Point());
+    
     this.buildingTypePalette = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
+
+    this.currentSubMenu = "";
+    this.hoverBuildingName = "";
+  }
+
+  ngOnInit() {
+    this.roadBuildingType = new RoadBuildingType(this.appAssetFolder, this.buildingTileSize);
   }
 
   public isToolEmpty() {

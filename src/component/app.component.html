@@ -1,4 +1,4 @@
-<div class="city_background">
+<div class="city_background" [style.background-size]="grid.getDimension().getPixelsX() + ' ' + grid.getDimension().getPixelsY()">
 </div>
 
 <main-menu />
@@ -21,8 +21,8 @@
         [style.background-image]="road.getType().getImageUrl()"
         [style.left]="road.getPos().getPixelsX()"
         [style.top]="road.getPos().getPixelsY()"
-        [style.width]="grid.getDimension().x"
-        [style.height]="grid.getDimension().y"
+        [style.width]="road.getType().getSize().getPixelsX()"
+        [style.height]="road.getType().getSize().getPixelsY()"
         [style.background-size]="'auto ' + grid.getDimension().getPixelsY()"
         [style.background-position]="'left ' + city.getRoadSpritePosition(road)+'px top 0px'"
         alt="Road" title="Road">
@@ -43,8 +43,8 @@
         [src]="building.getType().getImagePath()"
         [style.left]="building.getPos().getPixelsX()" 
         [style.top]="building.getPos().getPixelsY()"
-        [style.width]="building.getType().getImageSize().getPixelsX()"
-        [style.height]="building.getType().getImageSize().getPixelsY()"
+        [style.width]="building.getType().getSize().getPixelsX()"
+        [style.height]="building.getType().getSize().getPixelsY()"
         [alt]="building.getType().getName()" [title]="building.getType().getName()" />
 }
 
@@ -52,8 +52,8 @@
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
         [style.top]="getMouseCenteredGizmoPos().getPixelsY()"
-        [style.width]="grid.getDimension().x"
-        [style.height]="grid.getDimension().y"
+        [style.width]="getGizmoSizePx()"
+        [style.height]="getGizmoSizePx()"
         >
     </div>
 
@@ -61,8 +61,8 @@
         [style.background-image]="currentBuildingTool.getType().getImageUrl()"
         [style.left]="currentBuildingTool.getPos().getPixelsX()" 
         [style.top]="currentBuildingTool.getPos().getPixelsY()"
-        [style.width]="grid.getDimension().x"
-        [style.height]="grid.getDimension().y"
+        [style.width]="currentBuildingTool.getType().getSize().getPixelsX()"
+        [style.height]="currentBuildingTool.getType().getSize().getPixelsY()"
         [style.background-size]="'auto ' + grid.getDimension().getPixelsY()"
         [style.background-position]="'left ' + city.getRoadSpritePosition(currentBuildingTool)+'px top 0px'"
         (click)="placeBuilding(buildingPalette)">
@@ -72,7 +72,9 @@
     @if(!isToolDemolish()) {
     <div class="building_placement gizmo_area" [class.gizmo_ok]="city.isPlaceable(currentBuildingTool)"
         [style.left]="getMouseCenteredGizmoPos().getPixelsX()"
-        [style.top]="getMouseCenteredGizmoPos().getPixelsY()" >
+        [style.top]="getMouseCenteredGizmoPos().getPixelsY()"
+        [style.width]="getGizmoSizePx()"
+        [style.height]="getGizmoSizePx()">
     </div>
     }
 
@@ -89,12 +91,12 @@
         [src]="currentBuildingTool.getType().getImagePath()"
         [style.left]="currentBuildingTool.getPos().getPixelsX()" 
         [style.top]="currentBuildingTool.getPos().getPixelsY()"
-        [style.width]="currentBuildingTool.getType().getImageSize().getPixelsX()"
-        [style.height]="currentBuildingTool.getType().getImageSize().getPixelsY()"
+        [style.width]="currentBuildingTool.getType().getSize().getPixelsX()"
+        [style.height]="currentBuildingTool.getType().getSize().getPixelsY()"
         (click)="placeBuilding(buildingPalette)">
 }
 
-<building-palette (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
+<building-palette [buildingTileSize]="this.grid.getDimension()" (buildingToolSelectedEvent)="buildingToolSelectedEvent($event)" #buildingPalette />
 
 <version-information />
 

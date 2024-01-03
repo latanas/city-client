@@ -25,16 +25,17 @@ import { BuildingPaletteComponent } from './building-palette.component';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  grid = new Grid(new Point(100, 100));
+  grid = new Grid(new Point(50, 50));
   city = new City(this.grid);
 
   currentBuildingTool = new Building();
   mousePos = new Point();
-  gizmoRadius = this.grid.getDimension().x*1.5;
+  gizmoRadius = this.grid.getDimension().x/2.0;
 
   public buildingToolSelectedEvent(bt: BuildingType) {
     this.currentBuildingTool = bt instanceof RoadBuildingType ? new Road(bt) : new Building(bt);
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
+    this.gizmoRadius = Math.max(bt.getSize().x, bt.getSize().y) / 2;
   }
 
   public placeBuilding(buildingPalette: BuildingPaletteComponent) {
@@ -90,7 +91,7 @@ export class AppComponent {
     if (this.isToolRoad()) {
       return this.grid.snap(this.getMouseCenteredPosition(this.grid.getDimension()));
     }
-    return this.getMouseCenteredPosition(this.currentBuildingTool.getType().getImageSize());
+    return this.getMouseCenteredPosition(this.currentBuildingTool.getType().getSize());
   }
 
   getMouseCenteredGizmoPos(): Point {
@@ -100,5 +101,9 @@ export class AppComponent {
       return this.grid.snap(pos);
     }
     return pos;
+  }
+
+  getGizmoSizePx() {
+    return (this.gizmoRadius * 2) + "px";
   }
 }

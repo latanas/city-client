@@ -9,12 +9,12 @@ import { BuildingType } from "./building-type";
 export class RoadBuildingType extends BuildingType {
     public static readonly RoadSpriteCount: number = 11;
 
-    constructor(assetFolder: string) {
+    constructor(assetFolder: string, size: Point) {
         super(
             "Road",
             assetFolder + "/RoadSprites.png",
-            new Point(100, 100),
-            new RectList([new Rect(new Point(0, 0), new Point(100, 100))])
+            size,
+            new RectList([new Rect(new Point(0, 0), size)])
         );
     }
 
