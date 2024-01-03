@@ -15,18 +15,20 @@ import { RectList } from "./rect-list";
 // This class keeps them sorted in order of the Y coordinate, so  buildings that are "in front" will appear near the end of the list
 //
 export class City {
-  private items: Building[] = [];
+  private buildings: Building[] = [];
   private grid: Grid = new Grid(new Point(100, 100));
 
   constructor() {
   }
 
   getBuildingsCopy(): Building[] {
-    return this.items.slice();
+    return this.buildings.slice();
   }
 
+  // Check if a building's location overlaps already constructed area of the city
+  //
   isPlaceable(newBuilding: Building) {
-    for (let cityBuilding of this.items) {
+    for (let cityBuilding of this.buildings) {
       if( newBuilding.getOccupiedArea().isIntersectingRectList(cityBuilding.getOccupiedArea()) ) {
         return false;
       }
@@ -44,15 +46,14 @@ export class City {
     let bottomY = b.pos.y + b.type.imageSize.y;
     let i = 0;
 
-    while( (i < this.items.length) && (this.items[i].pos.y + this.items[i].type.imageSize.y < bottomY) ) i++;
+    while( (i < this.buildings.length) && (this.buildings[i].pos.y + this.buildings[i].type.imageSize.y < bottomY) ) i++;
 
-    if (i < this.items.length) {
-      this.items.splice(i, 0, b);
+    if (i < this.buildings.length) {
+      this.buildings.splice(i, 0, b);
     }
     else {
-      this.items.push(b);
+      this.buildings.push(b);
     }
-    // this.buildings.sort((a:Building, b:Building) => { return (a.pos.y + a.type.imageSize.y) - (b.pos.y + b.type.imageSize.y); }); 
     return true;
   }
 
@@ -61,36 +62,19 @@ export class City {
   demolish(area: RectList) {
     let newItems = new Array<Building>();
 
-    for (let b of this.items) {
+    for (let b of this.buildings) {
       if (!b.getOccupiedArea().isIntersectingRectList(area)) {
         newItems.push(b);
       }
     }
-    this.items = newItems;
+    this.buildings = newItems;
   }
-
-  // Demolish a building
-  // 
-  /*demolish(pos: Point, area: number) {
-    let newItems = new Array<Building>();
-
-    for (let b of this.items) {
-      if (b.pos.x + area > pos.x ||
-        b.pos.y + area > pos.y ||
-        b.pos.x + b.type.imageSize.x < pos.x - area ||
-        b.pos.y + b.type.imageSize.y < pos.y - area) {
-        newItems.push(b);
-      }
-    }
-
-    this.items = newItems;
-  }*/
 
   // Execute a function on each building
   //
   each(action: (obj: Building | null, id: number) => void) {
-    for (var id = 0; id < this.items.length; id++) {
-      action(this.items[id], id);
+    for (var id = 0; id < this.buildings.length; id++) {
+      action(this.buildings[id], id);
     }
   }
 }
