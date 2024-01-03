@@ -100,7 +100,7 @@ export class City {
   }
 
   private _placeRoad(road: Road) {
-    //let centerPt = road.getPos(); //Point.plus(road.getPos(), Point.scale(this.grid.getDimension(), 0.5));
+    //let centerPt = Point.plus(road.getPos(), Point.scale(this.grid.getDimension(), 0.5));
     let index = this.grid.getGridIndex(road.getPos());
     let roadNetworkSize = this._getRoadMatrixSize();
 
@@ -109,26 +109,25 @@ export class City {
 
       let newSizeX = Math.max(index.x + 1, roadNetworkSize.x);
       let newSizeY = Math.max(index.y + 1, roadNetworkSize.y);
+      //console.log("Resizing road network to " + newSizeX + "x" + newSizeY);
 
-      console.log("Resizing road network to " + newSizeX + "x" + newSizeY);
+      for (var x: number = 0; x < newSizeX; x++) {
+        newRoads[x] = [];
 
-        for(var x: number = 0; x < newSizeX; x++) {
-          newRoads[x] = [];
-
-          for(var y: number = 0; y < newSizeY; y++) {
-            if (this._isWithinBounds(x,y)) {
-              newRoads[x][y] = this.roads[x][y];
-            }
-            else {
-              newRoads[x][y] = new Road();
-            }
+        for (var y: number = 0; y < newSizeY; y++) {
+          if (this._isWithinBounds(x, y)) {
+            newRoads[x][y] = this.roads[x][y];
           }
+          else {
+            newRoads[x][y] = new Road();
+          }
+        }
       }
       this.roads = newRoads;
     }
 
+    // Add the road
     this.roads[index.x][index.y] = road;
-    console.log(this.roads[index.x][index.y].getPos());
   }
 
   // Demolish an area of the city

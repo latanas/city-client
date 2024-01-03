@@ -96,7 +96,7 @@
         <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
         <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
     
-        <p class="building_palette_road" (click)="grabBuilding(roadBuildingType)" (mouseenter)="hoverBuilding(roadBuildingType)" (mouseleave)="hoverOut()">
+        <p class="building_palette_road" (click)="grabRoadOrFinishAction()" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
             {{currentBuildingType.getName() != "" ? 'X' : 'Add Road&hellip;'}}
         </p>
 </div>

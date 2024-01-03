@@ -23,7 +23,7 @@ import { BuildingTypeFactoryService } from '../service/building-type-factory.ser
 export class BuildingPaletteComponent {
   @Output() buildingToolSelectedEvent = new EventEmitter<BuildingType>();
 
-  appAssetFolder = "asset";
+  private readonly appAssetFolder = "asset";
 
   currentBuildingType: BuildingType = new BuildingType();
   roadBuildingType = new RoadBuildingType(this.appAssetFolder);
@@ -36,6 +36,10 @@ export class BuildingPaletteComponent {
   
   constructor(btfService: BuildingTypeFactoryService) {
     this.buildingTypePalette = btfService.getBuildingTypeFactory().getBuildingTypes(this.appAssetFolder);
+  }
+
+  public isToolEmpty() {
+    return this.currentBuildingType.getName() == "";
   }
 
   public finishToolAction() {
@@ -78,8 +82,17 @@ export class BuildingPaletteComponent {
     this.buildingToolSelectedEvent.emit(this.currentBuildingType);
   }
 
+  public grabRoadOrFinishAction() {
+    if ( this.isToolEmpty() ) {
+      this.grabBuilding(this.roadBuildingType);
+    }
+    else {
+      this.finishToolAction();
+      this.buildingToolSelectedEvent.emit(this.currentBuildingType);
+    }
+  }
+
   onKeyUp(e: KeyboardEvent) {
-    //console.log(e);
     if( e.key == 'x' || e.key == 'X' || e.key == 'Escape') {
       this.hideSubMenu();
       this.currentBuildingType = new BuildingType();
