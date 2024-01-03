@@ -15,7 +15,7 @@
         </div>
     }
     }
-    <div class="building_placement"
+    <div class="building_placement" style="pointer-events: none;"
         [style.background-image]="road.getType().getImageUrl()"
         [style.left]="road.getPos().getPixelsX()"
         [style.top]="road.getPos().getPixelsY()"
@@ -37,7 +37,7 @@
         }
     }
 
-    <img class="building_placement"
+    <img class="building_placement" style="pointer-events: none;"
         [src]="building.getType().getImagePath()"
         [style.left]="building.getPos().getPixelsX()" 
         [style.top]="building.getPos().getPixelsY()"
