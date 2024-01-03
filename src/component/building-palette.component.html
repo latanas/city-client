@@ -95,10 +95,19 @@
         <div class="building_palette_06" (click)="showSubMenu('Education')"><p>Education</p></div>
         <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
         <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
-    
-        <p class="building_palette_road" (click)="grabRoadOrFinishAction()" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
-            {{currentBuildingType.getName() != "" ? 'X' : 'Add Road&hellip;'}}
-        </p>
+
+        @if(this.isToolEmpty()) {
+            <p class="building_palette_road"
+               [style.background-image]="roadBuildingType.getImageUrl()"
+               (click)="grabRoadOrFinishAction()"
+               (mouseenter)="hoverBuilding(roadBuildingType)"
+               (mouseleave)="hoverOut()">
+            </p>
+        }
+        @else {
+            <p class="building_palette_road" (click)="grabRoadOrFinishAction()">X</p>
+        }
+        
 </div>
     
 <div class="status_info">
