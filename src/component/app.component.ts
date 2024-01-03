@@ -101,8 +101,11 @@ export class AppComponent {
     this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
 
     if ( this.navigationPanActive && (Point.minus(this.mouseScreenPos, this.navigationPanPivot).distance() > this.grid.getDimension().x*0.2) ) {
-      this.grid.getOrigin().x += this.mouseScreenPos.x - this.navigationPanPivot.x;
-      this.grid.getOrigin().y += this.mouseScreenPos.y - this.navigationPanPivot.y;
+
+      this.setClampedOrigin(new Point(
+        this.grid.getOrigin().x + this.mouseScreenPos.x - this.navigationPanPivot.x,
+        this.grid.getOrigin().y + this.mouseScreenPos.y - this.navigationPanPivot.y
+      ));
 
       this.navigationPanPivot = this.mouseScreenPos;
     }
@@ -172,7 +175,8 @@ export class AppComponent {
     return Point.minus(this.getWindowSize(), this.grid.getMaxSize());
   }
 
-  getMaxOrigin(): Point {
-    return Point.minus(this.grid.getMaxSize(), this.getWindowSize());
+  setClampedOrigin(origin: Point) {
+    let clampedOrigin = Point.clamp(origin, this.getMinOrigin(), new Point(0, 0));
+    this.grid.setOrigin(clampedOrigin);
   }
 }

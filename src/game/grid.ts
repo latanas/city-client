@@ -31,8 +31,16 @@ export class Grid {
     return this.origin;
   }
 
+  setOrigin(origin: Point) {
+    this.origin = origin;
+  }
+
   getDimension(): Point {
     return this.dimension;
+  }
+
+  setSetDimension(dimension: Point) {
+    this.dimension = dimension;
   }
 
   getMaxSize(): Point {

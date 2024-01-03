@@ -64,6 +64,15 @@ export class Point {
         return a.x*b.y - a.y*b.x;
     }
 
+    static clamp(pt: Point, min: Point, max: Point): Point {
+        let clamped = new Point();
+
+        clamped.x = Math.min(Math.max(pt.x, min.x), max.x);
+        clamped.y = Math.min(Math.max(pt.y, min.y), max.y);
+
+        return clamped;
+    };
+
     static getCenteredPosition(center: Point, size: Point) {
         return Point.plus(center, new Point(
           -1*(size.x/2),
