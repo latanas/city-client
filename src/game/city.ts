@@ -69,6 +69,12 @@ export class City {
         return false;
       }
     }
+    
+    for (let cityRoad of this.getRoadsCopy()) {
+      if( newBuilding.getOccupiedArea().isIntersectingRectList(cityRoad.getOccupiedArea()) ) {
+        return false;
+      }
+    }
     return true;
   }
 
@@ -141,6 +147,13 @@ export class City {
       }
     }
     this.buildings = newItems;
+
+    for (let cityRoad of this.getRoadsCopy()) {
+      if( cityRoad.getOccupiedArea().isIntersectingRectList(area) ) {
+        let i = this.grid.getGridIndex(cityRoad.getPos());
+        this.roads[i.x][i.y] = new Road();
+      }
+    }
   }
 
   // Execute a function on each building

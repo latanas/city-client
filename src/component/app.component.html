@@ -6,6 +6,17 @@
 <navigation-menu />
 
 @for (road of city.getRoadsCopy(); track $index) {
+    @if( !isToolRoad() ) {
+        @if( currentBuildingTool.getOccupiedArea().isIntersectingRectList( road.getOccupiedArea()) ) {
+            @for (r of road.getOccupiedArea().rects; track $index) {
+                <div class="building_placement occupied_area"
+                    [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
+                    [style.width]="r.getSize().getPixelsX()" [style.height]="r.getSize().getPixelsY()">
+                </div>
+            }
+        }
+    }
+
     <div class="building_placement"
         [style.background-image]="road.getType().getImageUrl()"
         [style.left]="road.getPos().getPixelsX()"
@@ -19,7 +30,7 @@
 }
 
 @for (building of city.getBuildingsCopy(); track $index) {
-    @if(building.getOccupiedArea().isIntersectingRectList( currentBuildingTool.getOccupiedArea() )) {
+    @if(currentBuildingTool.getOccupiedArea().isIntersectingRectList( building.getOccupiedArea() )) {
         @for (r of building.getOccupiedArea().rects; track $index) {
             <div class="building_placement occupied_area"
                 [style.left]="r.getTopLeft().getPixelsX()" [style.top]="r.getTopLeft().getPixelsY()"
@@ -53,7 +64,7 @@
         [style.width]="grid.getDimension().x"
         [style.height]="grid.getDimension().y"
         [style.background-size]="'auto ' + grid.getDimension().getPixelsY()"
-        [style.backroundPositionTopLeft]="0"
+        [style.background-position]="'left ' + city.getRoadSpritePosition(currentBuildingTool)+'px top 0px'"
         (click)="placeBuilding(buildingPalette)">
     </div>
 }
