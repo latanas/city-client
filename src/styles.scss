@@ -9,9 +9,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 .icon_sprite {
     display: inline-block;
+
+    /* This is the default size but some UI icons are larger */
     width: 30px;
     height: 30px;
 
@@ -42,6 +43,61 @@ body {
 
 .icon_sprite_zoom_help {
     background-position: 100% 0%;
+}
+
+.icon_building_type {
+    display: inline-block;
+
+    width: 32px;
+    height: 32px;
+
+    background-image: url(asset/IconsBuildingType.png);
+    background-repeat: no-repeat;
+    background-size: auto 32px;
+}
+
+.icon_housing {
+    background-position: 0px 0px;
+}
+
+.icon_power {
+    background-position: -32px 0px;
+}
+
+.icon_water {
+    background-position: -64px 0px;
+}
+
+.icon_industry {
+    background-position: -96px 0px;
+}
+
+.icon_entertainment {
+    background-position: -128px 0px;
+}
+
+.icon_education {
+    background-position: -160px 0px;
+}
+
+.icon_transport {
+    background-position: -192px 0px;
+}
+
+.icon_parks {
+    background-position: -224px 0px;
+}
+
+.icon_sprite_safety {
+    background-position: -256px 0px;
+}
+
+.icon_sprite_health {
+    background-position: -288px 0px;
+}
+
+.icon_sprite_civic {
+    background-position: -320px 0px;
 }
 
 .top_menu {

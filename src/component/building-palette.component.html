@@ -87,14 +87,14 @@
 }
 
 <div class="building_palette">
-        <div class="building_palette_01" (click)="showSubMenu('Housing')"><p>Housing</p></div>
-        <div class="building_palette_02" (click)="showSubMenu('Power')"><p>Power</p></div>
-        <div class="building_palette_03" (click)="showSubMenu('Water')"><p>Water</p></div>
-        <div class="building_palette_04" (click)="showSubMenu('Industry')"><p>Industry</p></div>
-        <div class="building_palette_05" (click)="showSubMenu('Entertainment')"><p>Entertainment</p></div>
-        <div class="building_palette_06" (click)="showSubMenu('Education')"><p>Education</p></div>
-        <div class="building_palette_07" (click)="showSubMenu('Transport')"><p>Transport</p></div>
-        <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
+        <div class="building_palette_01" (click)="showSubMenu('Housing')" (mouseenter)="hoverBuildingName='Housing'" (mouseleave)="hoverOut()" ><p class="icon_building_type icon_housing"></p></div>
+        <div class="building_palette_02" (click)="showSubMenu('Power')" (mouseenter)="hoverBuildingName='Power'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_power"></p></div>
+        <div class="building_palette_03" (click)="showSubMenu('Water')" (mouseenter)="hoverBuildingName='Water'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_water"></p></div>
+        <div class="building_palette_04" (click)="showSubMenu('Industry')" (mouseenter)="hoverBuildingName='Industry'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_industry"></p></div>
+        <div class="building_palette_05" (click)="showSubMenu('Entertainment')" (mouseenter)="hoverBuildingName='Entertainment'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_entertainment"></p></div>
+        <div class="building_palette_06" (click)="showSubMenu('Education')" (mouseenter)="hoverBuildingName='Education'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_education"></p></div>
+        <div class="building_palette_07" (click)="showSubMenu('Transport')" (mouseenter)="hoverBuildingName='Transport'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_transport"></p></div>
+        <div class="building_palette_08" (click)="showSubMenu('Parks')" (mouseenter)="hoverBuildingName='Parks'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_parks"></p></div>
 
         @if(this.isToolEmpty()) {
             <p class="building_palette_road icon_sprite icon_sprite_road"
