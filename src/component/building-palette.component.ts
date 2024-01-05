@@ -10,8 +10,6 @@ import { BuildingTypeFactoryService } from '../service/building-type-factory.ser
 
 @Component({
   selector: 'building-palette',
-  //standalone: true,
-  //imports: [],
   templateUrl: './building-palette.component.html',
   styleUrl: './building-palette.component.scss',
   host:{
@@ -48,24 +46,20 @@ export class BuildingPaletteComponent {
     this.roadBuildingType = new RoadBuildingType(this.appAssetFolder, this.buildingTileSize);
   }
 
+  onKeyUp(e: KeyboardEvent) {
+    if( e.key == 'x' || e.key == 'X' || e.key == 'Escape') {
+      this.hideSubMenu();
+      this.currentBuildingType = new BuildingType();
+      this.buildingToolSelectedEvent.emit(this.currentBuildingType);
+    }
+  }
+
   public buildingTypeEntries(): [string, BuildingType[]][]  {
     return Object.entries(this.buildingTypePalette);
   }
 
-  public isToolEmpty() {
-    return this.currentBuildingType.getName() == "";
-  }
-
   public finishToolAction() {
     this.currentBuildingType = new BuildingType();
-  }
-
-  public hideSubMenu() {
-    this.currentSubMenu = "";
-  }
-
-  public hoverOut() {
-    this.hoverBuildingName = "";
   }
 
   public showSubMenu(menuName: string) {
@@ -106,11 +100,15 @@ export class BuildingPaletteComponent {
     }
   }
 
-  onKeyUp(e: KeyboardEvent) {
-    if( e.key == 'x' || e.key == 'X' || e.key == 'Escape') {
-      this.hideSubMenu();
-      this.currentBuildingType = new BuildingType();
-      this.buildingToolSelectedEvent.emit(this.currentBuildingType);
-    }
+  public hideSubMenu() {
+    this.currentSubMenu = "";
+  }
+
+  public hoverOut() {
+    this.hoverBuildingName = "";
+  }
+
+  public isToolEmpty() {
+    return this.currentBuildingType.getName() == "";
   }
 }

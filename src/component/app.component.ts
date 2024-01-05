@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
+import { BuildingPaletteComponent } from './building-palette.component';
 
 import { Point } from '../game/point';
 import { Grid } from '../game/grid';
+
 import { BuildingType } from '../game/building-type';
 import { DemolishBuildingType } from '../game/demolish-building-type';
 import { RoadBuildingType } from '../game/road-building-type';
+
 import { Building } from '../game/building';
 import { Road } from '../game/road';
-
 import { City } from 'src/game/city';
-
-import { BuildingPaletteComponent } from './building-palette.component';
-import { NavigationMenuComponent } from './navigation-menu.component';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +27,10 @@ import { NavigationMenuComponent } from './navigation-menu.component';
 
 export class AppComponent {
   title = 'City @ Atanas Laskov';
-  grid = new Grid(new Point(0, 0), new Point(50, 50), new Point(100, 100));
+  private readonly gridSize = new Point(50, 50);
+  private readonly maxGridCellCount = new Point(100, 100);
+
+  grid = new Grid(new Point(0, 0), this.gridSize, this.maxGridCellCount);
   city = new City(this.grid);
 
   currentBuildingTool = new Building();
@@ -43,6 +45,39 @@ export class AppComponent {
   constructor() {
     this.grid.getOrigin().x = this.getMinOrigin().x/2;
     this.grid.getOrigin().y = this.getMinOrigin().y/2;
+  }
+
+  onMouseMove(e: MouseEvent) {
+    this.mouseScreenPos = new Point(e.clientX, e.clientY);
+    this.mouseMapPos = new Point(this.mouseScreenPos.x - this.grid.getOrigin().x, this.mouseScreenPos.y - this.grid.getOrigin().y);
+
+    this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
+
+    if ( this.navigationPanActive && (Point.minus(this.mouseScreenPos, this.navigationPanPivot).distance() > this.grid.getDimension().x*0.2) ) {
+
+      this.setClampedOrigin(new Point(
+        this.grid.getOrigin().x + this.mouseScreenPos.x - this.navigationPanPivot.x,
+        this.grid.getOrigin().y + this.mouseScreenPos.y - this.navigationPanPivot.y
+      ));
+
+      this.navigationPanPivot = this.mouseScreenPos;
+    }
+  }
+
+  onUp(e: KeyboardEvent) {
+    this.grid.getOrigin().y += this.grid.getDimension().y;
+  }
+
+  onDown(e: KeyboardEvent) {
+    this.grid.getOrigin().y -= this.grid.getDimension().y;
+  }
+
+  onLeft(e: KeyboardEvent) {
+    this.grid.getOrigin().x += this.grid.getDimension().x;
+  }
+
+  onRight(e: KeyboardEvent) {
+    this.grid.getOrigin().x -= this.grid.getDimension().x;
   }
 
   public buildingToolSelectedEvent(bt: BuildingType) {
@@ -84,29 +119,29 @@ export class AppComponent {
     buildingPalette.finishToolAction();
   }
 
+  navigationPanCommand(buildingPalette: BuildingPaletteComponent) {
+    this.navigationPanEnabled = !this.navigationPanEnabled;
+    this.finishBuildingToolAction(buildingPalette);
+  }
+
+  navigationPanStart() {
+    if ( this.navigationPanEnabled ) {
+      this.navigationPanActive = true;
+      this.navigationPanPivot = this.mouseScreenPos;
+    }
+  }
+
+  navigationPanEnd() {
+    this.navigationPanActive = false;
+    this.navigationPanPivot = new Point();
+  }
+
   isToolRoad() {
     return this.currentBuildingTool.getType() instanceof RoadBuildingType;
   }
 
   isToolDemolish() {
     return this.currentBuildingTool.getType() instanceof DemolishBuildingType;
-  }
-
-  onMouseMove(e: MouseEvent) {
-    this.mouseScreenPos = new Point(e.clientX, e.clientY);
-    this.mouseMapPos = new Point(this.mouseScreenPos.x - this.grid.getOrigin().x, this.mouseScreenPos.y - this.grid.getOrigin().y);
-
-    this.currentBuildingTool.setPos( this.getMouseCenteredBuildingPos() );
-
-    if ( this.navigationPanActive && (Point.minus(this.mouseScreenPos, this.navigationPanPivot).distance() > this.grid.getDimension().x*0.2) ) {
-
-      this.setClampedOrigin(new Point(
-        this.grid.getOrigin().x + this.mouseScreenPos.x - this.navigationPanPivot.x,
-        this.grid.getOrigin().y + this.mouseScreenPos.y - this.navigationPanPivot.y
-      ));
-
-      this.navigationPanPivot = this.mouseScreenPos;
-    }
   }
 
   getMouseCenteredPosition(size: Point): Point {
@@ -131,39 +166,6 @@ export class AppComponent {
 
   getGizmoSizePx() {
     return (this.gizmoRadius * 2) + "px";
-  }
-
-  onUp(e: KeyboardEvent) {
-    this.grid.getOrigin().y += this.grid.getDimension().y;
-  }
-
-  onDown(e: KeyboardEvent) {
-    this.grid.getOrigin().y -= this.grid.getDimension().y;
-  }
-
-  onLeft(e: KeyboardEvent) {
-    this.grid.getOrigin().x += this.grid.getDimension().x;
-  }
-
-  onRight(e: KeyboardEvent) {
-    this.grid.getOrigin().x -= this.grid.getDimension().x;
-  }
-
-  navigationPanCommand(buildingPalette: BuildingPaletteComponent) {
-    this.navigationPanEnabled = !this.navigationPanEnabled;
-    this.finishBuildingToolAction(buildingPalette);
-  }
-
-  navigationPanStart() {
-    if ( this.navigationPanEnabled ) {
-      this.navigationPanActive = true;
-      this.navigationPanPivot = this.mouseScreenPos;
-    }
-  }
-
-  navigationPanEnd() {
-    this.navigationPanActive = false;
-    this.navigationPanPivot = new Point();
   }
 
   getWindowSize() {
