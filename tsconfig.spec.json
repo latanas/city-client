@@ -9,6 +9,8 @@
   },
   "include": [
     "src/test/component/*.spec.ts",
-    "src/test/component/*.d.ts"
+    "src/test/component/*.d.ts",
+    "src/test/unit/*.spec.ts",
+    "src/test/unit/*.d.ts"
   ]
 }
