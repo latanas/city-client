@@ -52,18 +52,6 @@ export class Point {
         return new Point(v.x / d, v.y / d);
     }
 
-    // Dot product, this is a measure of how closely aligned the direction of the two vectors is
-    //
-    static dot(a: Point, b: Point): number {
-        return a.x*b.x + a.y*b.y;
-    }
-
-    // Cross product, this is a scalar value in 2D
-    //
-    static cross(a: Point, b: Point): number {
-        return a.x*b.y - a.y*b.x;
-    }
-
     static clamp(pt: Point, min: Point, max: Point): Point {
         let clamped = new Point();
 

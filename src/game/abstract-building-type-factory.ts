@@ -20,6 +20,9 @@ export type BuildingTypes = {
     Education: BuildingType[],
     Transport: BuildingType[],
     Parks: BuildingType[],
+    //Safety: BuildingType[],
+    //Health: BuildingType[],
+    //Civic: BuildingType[],
 }
 
 // Factory interface for populating the buildings

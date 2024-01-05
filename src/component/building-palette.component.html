@@ -2,7 +2,7 @@
 
 <div class="building_sub_palette" (click)="grabBuilding(demolishBuildingType)">
     <div class="building_sub_palette_00" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
-        <p><img [src]="demolishBuildingType.getImagePath()" width="50px" height="auto"></p>
+        <p class="icon_sprite icon_sprite_demolish"></p>
     </div>
 </div>
 
@@ -97,8 +97,7 @@
         <div class="building_palette_08" (click)="showSubMenu('Parks')"><p>Parks</p></div>
 
         @if(this.isToolEmpty()) {
-            <p class="building_palette_road"
-               [style.background-image]="roadBuildingType.getImageUrl()"
+            <p class="building_palette_road icon_sprite icon_sprite_road"
                (click)="grabRoadOrFinishAction()"
                (mouseenter)="hoverBuilding(roadBuildingType)"
                (mouseleave)="hoverOut()">

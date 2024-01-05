@@ -9,6 +9,41 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+.icon_sprite {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    background-image: url(asset/IconsUI.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+.icon_sprite_road {
+    background-position: 0px 0px;
+}
+
+.icon_sprite_demolish {
+    background-position: 20% 0%;
+}
+
+.icon_sprite_pan {
+    background-position: 40% 0%;
+}
+
+.icon_sprite_zoom_in {
+    background-position: 60% 0%;
+}
+
+.icon_sprite_zoom_out {
+    background-position: 80% 0%;
+}
+
+.icon_sprite_zoom_help {
+    background-position: 100% 0%;
+}
+
 .top_menu {
     position: fixed;
     left: 0px;
@@ -39,18 +74,4 @@ body {
 
 .top_menu span:hover {
     background-color: #6957aa;
-}
-
-.icon_sprite {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-
-    background-image: url(asset/IconSprites.png);
-    background-repeat: no-repeat;
-    background-size: auto 30px;
-}
-
-.icon_sprite_pan {
-    background-position: 0px 0px;
 }
