@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuildingPaletteComponent } from './building-palette.component';
+import { BuildingPaletteComponent } from '../../component/building-palette.component';
 
 describe('BuildingPaletteComponent', () => {
   let component: BuildingPaletteComponent;
