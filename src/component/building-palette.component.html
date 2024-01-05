@@ -1,112 +1,40 @@
 
 
 <div class="building_sub_palette" (click)="grabBuilding(demolishBuildingType)">
-    <div class="building_sub_palette_00" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
+    <div class="building_sub_palette_demolish" (mouseenter)="hoverBuilding(demolishBuildingType)" (mouseleave)="hoverOut()">
         <p class="icon_sprite icon_sprite_demolish"></p>
     </div>
 </div>
 
-@if (currentSubMenu == "Housing") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Housing"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
+@for (entry of buildingTypeEntries(); track $index) {
+    @if (currentSubMenu == entry[0]) {
+        <div class="building_sub_palette">
+            @for (buildingType of entry[1]; track $index) {
+            <div [class]="'building_sub_palette_'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
+                <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
+            </div>
+            }
         </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Power") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Power"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Industry") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Industry"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Entertainment") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Entertainment"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Transport") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Transport"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Parks") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Parks"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Water") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Water"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
-}
-
-@if (currentSubMenu == "Education") {
-    <div class="building_sub_palette">
-        @for (buildingType of buildingTypePalette["Education"]; track $index) {
-        <div [class]="'building_sub_palette_0'+($index+1)" (click)="grabBuilding(buildingType)" (mouseenter)="hoverBuilding(buildingType)" (mouseleave)="hoverOut()">
-            <p><img [src]="buildingType.getImagePath()" width="50px" height="auto"></p>
-        </div>
-        }
-    </div>
+    }
 }
 
 <div class="building_palette">
-        <div class="building_palette_01" (click)="showSubMenu('Housing')" (mouseenter)="hoverBuildingName='Housing'" (mouseleave)="hoverOut()" ><p class="icon_building_type icon_housing"></p></div>
-        <div class="building_palette_02" (click)="showSubMenu('Power')" (mouseenter)="hoverBuildingName='Power'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_power"></p></div>
-        <div class="building_palette_03" (click)="showSubMenu('Water')" (mouseenter)="hoverBuildingName='Water'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_water"></p></div>
-        <div class="building_palette_04" (click)="showSubMenu('Industry')" (mouseenter)="hoverBuildingName='Industry'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_industry"></p></div>
-        <div class="building_palette_05" (click)="showSubMenu('Entertainment')" (mouseenter)="hoverBuildingName='Entertainment'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_entertainment"></p></div>
-        <div class="building_palette_06" (click)="showSubMenu('Education')" (mouseenter)="hoverBuildingName='Education'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_education"></p></div>
-        <div class="building_palette_07" (click)="showSubMenu('Transport')" (mouseenter)="hoverBuildingName='Transport'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_transport"></p></div>
-        <div class="building_palette_08" (click)="showSubMenu('Parks')" (mouseenter)="hoverBuildingName='Parks'" (mouseleave)="hoverOut()"><p class="icon_building_type icon_parks"></p></div>
-
-        @if(this.isToolEmpty()) {
-            <p class="building_palette_road icon_sprite icon_sprite_road"
-               (click)="grabRoadOrFinishAction()"
-               (mouseenter)="hoverBuilding(roadBuildingType)"
-               (mouseleave)="hoverOut()">
-            </p>
-        }
-        @else {
-            <p class="building_palette_road icon_sprite icon_sprite_cancel" (click)="grabRoadOrFinishAction()"></p>
-        }
-        
+    @for (entry of buildingTypeEntries(); track $index) {
+        <div [class]="'building_palette_' + ($index+1)" (click)="showSubMenu(entry[0])" (mouseenter)="hoverBuildingName=entry[0]" (mouseleave)="hoverOut()" >
+            <p [class]="'icon_building_type icon_' + entry[0].toLowerCase()"></p>
+        </div>
+    }
+    
+    @if(this.isToolEmpty()) {
+        <p class="building_palette_road icon_sprite icon_sprite_road"
+            (click)="grabRoadOrFinishAction()"
+            (mouseenter)="hoverBuilding(roadBuildingType)"
+            (mouseleave)="hoverOut()">
+    </p>
+    }
+    @else {
+        <p class="building_palette_road icon_sprite icon_sprite_cancel" (click)="grabRoadOrFinishAction()"></p>
+    }
 </div>
     
 <div class="status_info">

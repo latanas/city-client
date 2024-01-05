@@ -48,6 +48,10 @@ export class BuildingPaletteComponent {
     this.roadBuildingType = new RoadBuildingType(this.appAssetFolder, this.buildingTileSize);
   }
 
+  public buildingTypeEntries(): [string, BuildingType[]][]  {
+    return Object.entries(this.buildingTypePalette);
+  }
+
   public isToolEmpty() {
     return this.currentBuildingType.getName() == "";
   }
