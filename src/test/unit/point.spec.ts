@@ -7,7 +7,7 @@
   http://www.atanaslaskov.com/city/
 */
 
-import './utils.ts';
+import { limitPrecision} from './utils';
 import { Point } from '../../game/point';
 
 describe("Vector", () => {

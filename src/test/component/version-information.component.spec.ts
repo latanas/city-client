@@ -8,7 +8,7 @@ describe('VersionInformationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VersionInformationComponent]
+      declarations: [VersionInformationComponent]
     })
     .compileComponents();
     
@@ -19,5 +19,12 @@ describe('VersionInformationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have version string', () => {
+    const fixture = TestBed.createComponent(VersionInformationComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.version_info strong')?.textContent).toContain('Version 0.0.9');
   });
 });

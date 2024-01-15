@@ -9,6 +9,6 @@
 
 // Limit precision to 3 decimal places
 //
-function limitPrecision(n: number) {
+export function limitPrecision(n: number) {
   return Math.round( n * 1000.0 ) / 1000;
 }

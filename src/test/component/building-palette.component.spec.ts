@@ -8,7 +8,7 @@ describe('BuildingPaletteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BuildingPaletteComponent]
+      declarations: [BuildingPaletteComponent]
     })
     .compileComponents();
     

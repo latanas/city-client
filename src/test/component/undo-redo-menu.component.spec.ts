@@ -8,7 +8,7 @@ describe('UndoRedoMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UndoRedoMenuComponent]
+      declarations: [UndoRedoMenuComponent]
     })
     .compileComponents();
     
